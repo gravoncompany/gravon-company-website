@@ -65,8 +65,11 @@ Derivada do código da landing page do Pipeflow (`gravoncompany/pipeflow-landing
 6. **Portal Gravon** (areia) — "Dashboard do Portal" (dados de demonstração substituídos na própria imagem) e "Próximos passos", lado a lado no desktop e empilhados no celular, com versão própria para celular e ampliação ao clicar. Arquivos em `public/images/portal/` (`portal-dashboard-demo`, `portal-dashboard-demo-mobile`, `portal-proximos-passos`, `portal-proximos-passos-mobile`), configurados em `src/content/media.ts`.
 7. **Metodologia CMC** (preto) — funil com volume (A·Q·C·R); cada camada é um botão (teclado: setas, Home/End). Abre em Atração; explicação ao lado no desktop e logo abaixo da etapa ativa no celular.
 8. **Nosso processo** (universo) — linha do tempo vertical que avança com a rolagem: Tráfego pago & Social Media → CRM com inteligência artificial → Gravon IA conecta a operação → Visibilidade no Portal Gravon.
-9. **Projeto demonstrativo** (branco) — Aurora Estética e Mariana Souza (fictícias): carrossel de 2 telas, capa de Reels, 3 Stories, anúncio → WhatsApp e quadro animado do Pipeflow (Novo lead → Atendimento, resumo da Gravon IA, botão "Rever demonstração").
-10. **Chamada comercial** (dourado) — título e um único botão.
+9. **Como funciona o processo de marketing e vendas** (preto) — funil de 4 faixas douradas (Marketing: 1–2; Vendas: 3–4) com a passagem da captação para o atendimento comercial destacada.
+10. **Marketing e Vendas em 90 dias** (preto) — três cards mensais do projeto inicial e botão que abre o formulário (sem preço/parcelamento).
+11. **Projeto demonstrativo** (branco) — Aurora Estética e Mariana Souza (fictícias): carrossel de 2 telas, capa de Reels, 3 Stories, anúncio → WhatsApp e quadro animado do Pipeflow (Novo lead → Atendimento, resumo da Gravon IA, botão "Rever demonstração").
+12. **Conheça a Gravon Company** (preto) — retrato e visão do fundador Wilian Souza, apresentação da empresa, indicadores e selo Google Partner (`public/images/sobre/`).
+13. **Chamada comercial** (dourado) — título e um único botão.
 
 ## Pop-up de captação
 

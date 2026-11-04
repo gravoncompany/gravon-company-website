@@ -50,11 +50,12 @@ export const site = {
 
 export const nav = [
   { href: "#solucoes", label: "Soluções" },
-  { href: "#jornada", label: "Jornada" },
   { href: "#pipeflow", label: "Pipeflow CRM" },
   { href: "#portal", label: "Portal" },
   { href: "#metodologia", label: "Metodologia" },
+  { href: "#implementacao-90-dias", label: "90 dias" },
   { href: "#projeto-demonstrativo", label: "Projeto demo" },
+  { href: "#sobre", label: "Sobre" },
 ] as const;
 
 /** Prefixa arquivos de /public com o basePath (necessário em hospedagem em subcaminho). */
