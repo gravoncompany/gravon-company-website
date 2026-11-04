@@ -6,7 +6,7 @@ A URL do webhook do Zapier fica **somente** no segredo do Worker — nunca no si
 ## Campos repassados ao Zapier
 
 `event_id` (único por envio; reenvios mantêm o mesmo), `faturamento`, `name`, `whatsapp` (só dígitos),
-`email`, `instagram`, `company`, `segmento`, `cta`, `form`, `landing_url`, `submitted_at`, UTMs/gclid/fbclid
+`instagram`, `segmento` (texto livre), `cta`, `form`, `landing_url`, `submitted_at`, UTMs/gclid/fbclid
 e, para o inbound do Pipeflow: `revenue` (= faturamento), `service` (= segmento), `source`, `form_origin`.
 
 ## Publicar (uma vez)

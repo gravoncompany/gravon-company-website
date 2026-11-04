@@ -5,7 +5,8 @@ import { SectionHeading } from "../ui/SectionHeading";
 import { Reveal } from "../ui/Reveal";
 import { SimBadge } from "../mockups/BrandLogos";
 import { CarouselPreview, ReelsCoverPreview, StoriesPreview } from "../mockups/ClinicSocial";
-import { ClickToWhatsAppAd, PipeflowLeadPreview, WhatsAppChatPreview } from "../mockups/ClinicFunnel";
+import { ClickToWhatsAppAd, WhatsAppChatPreview } from "../mockups/ClinicFunnel";
+import { PipeflowBoardDemo } from "../mockups/PipeflowBoardDemo";
 
 function StepTitle({ n, icon: Icon, title, text }: { n: string; icon: typeof Megaphone; title: string; text: string }) {
   return (
@@ -40,7 +41,7 @@ export function DemoProject() {
             id="projeto-title"
             eyebrow="Projeto demonstrativo"
             title={<>Veja como seria um projeto <span className="text-gradient-dark">com a Gravon</span></>}
-            description={`Um exemplo do caminho completo para uma clínica de estética: do conteúdo que gera interesse ao contato acompanhado no CRM. ${clinic.name} é uma clínica fictícia, criada só para esta demonstração.`}
+            description={`O caminho completo para uma clínica de estética: do conteúdo que gera interesse ao contato acompanhado no CRM. ${clinic.name} e ${clinic.lead.name} são fictícias, criadas só para esta demonstração.`}
           />
           <Reveal><span className="inline-flex"><span className="rounded-full bg-ink-900 px-1 py-1"><SimBadge>Projeto demonstrativo · clínica fictícia</SimBadge></span></span></Reveal>
         </div>
@@ -48,15 +49,19 @@ export function DemoProject() {
         <div className="mt-14 space-y-8">
           <StepTitle n="01" icon={Sparkles} title="Social Media" text="Conteúdo que educa e aproxima: a mesma clínica explicando um procedimento, respondendo dúvidas e convidando para a avaliação." />
           <div className="grid gap-5 lg:grid-cols-3">
-            <PieceCard title="Carrossel · procedimento explicado" text={`Quatro telas que mostram, passo a passo, como funciona a ${clinic.procedure.toLowerCase()}.`}>
-              <CarouselPreview />
-            </PieceCard>
-            <PieceCard delay={80} title="Capa de Reels · dúvida comum" text="Uma pergunta frequente vira vídeo curto, com capa clara que convida a assistir.">
+            <div className="lg:col-span-2">
+              <PieceCard title="Carrossel · procedimento explicado" text={`Capa e passo a passo da ${clinic.procedure.toLowerCase()}, com a identidade visual da clínica.`}>
+                <CarouselPreview />
+              </PieceCard>
+            </div>
+            <PieceCard delay={80} title="Capa de Reels · dúvida comum" text="Uma pergunta frequente vira vídeo curto, com capa vertical que convida a assistir.">
               <ReelsCoverPreview />
             </PieceCard>
-            <PieceCard delay={160} title="Sequência de Stories · agendamento" text="Três telas em sequência que levam ao convite para agendar uma avaliação.">
-              <div className="w-full max-w-[340px]"><StoriesPreview /></div>
-            </PieceCard>
+            <div className="lg:col-span-3">
+              <PieceCard delay={120} title="Sequência de Stories · agendamento" text="Três telas em sequência: desperta o interesse, explica a avaliação e convida para agendar.">
+                <div className="mx-auto w-full max-w-[720px]"><StoriesPreview /></div>
+              </PieceCard>
+            </div>
           </div>
         </div>
 
@@ -70,10 +75,10 @@ export function DemoProject() {
         </div>
 
         <div className="mt-16 space-y-8">
-          <StepTitle n="03" icon={Kanban} title="Pipeflow acompanha cada contato" text="A conversa vira um card no funil com origem e campanha registradas, e a Gravon IA resume o interesse para o time decidir o próximo passo." />
+          <StepTitle n="03" icon={Kanban} title="Pipeflow acompanha cada contato" text={`Depois da conversa no WhatsApp, ${clinic.lead.first} entra em Novo lead com origem e interesse, passa para Atendimento e a Gravon IA resume o que ela precisa.`} />
           <Reveal className="mx-auto max-w-4xl">
-            <PipeflowLeadPreview />
-            <p className="mt-3 flex items-center justify-center gap-1.5 text-center text-xs text-zinc-500"><MessageCircle className="h-3.5 w-3.5" aria-hidden />Contato, conversa e dados são ilustrativos.</p>
+            <PipeflowBoardDemo />
+            <p className="mt-3 flex items-center justify-center gap-1.5 text-center text-xs text-zinc-500"><MessageCircle className="h-3.5 w-3.5" aria-hidden />{clinic.lead.name}, a conversa e os dados são fictícios.</p>
           </Reveal>
         </div>
       </Container>

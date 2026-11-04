@@ -24,6 +24,13 @@ export function LeadModalProvider({ children }: { children: React.ReactNode }) {
     return () => window.removeEventListener("hashchange", fromHash);
   }, []);
 
+  // Sinaliza o estado do pop-up para o chat flutuante (que se recolhe enquanto o formulário está aberto).
+  useEffect(() => {
+    const isOpen = source !== null;
+    document.documentElement.toggleAttribute("data-lead-modal-open", isOpen);
+    window.dispatchEvent(new CustomEvent("gravon:lead-modal", { detail: { open: isOpen } }));
+  }, [source]);
+
   return (
     <LeadModalContext.Provider value={{ open }}>
       {children}

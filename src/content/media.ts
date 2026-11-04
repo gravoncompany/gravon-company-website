@@ -64,3 +64,22 @@ export const portalShots: PortalShot[] = [
     mobile: { src: "/images/portal/portal-proximos-passos-mobile.png", width: 724, height: 1452, title: "Próximos passos", alt: "Próximos passos no Portal Gravon em formato de celular: progresso real das entregas e lista de entregas do mês 1 com status" },
   },
 ];
+
+/**
+ * Gravon IA (bloco "CRM com inteligência artificial" em Nossas soluções).
+ * PENDENTE: imagem do trecho "inteligência artificial e tecnologia" e o robô animado da primeira seção de
+ * https://ia.gravoncompany.com/ (não acessível no ambiente de desenvolvimento). Ao receber:
+ *   - image: coloque em /public/images/gravon-ia/ e preencha abaixo;
+ *   - robot: arquivo da animação original (.webm/.mp4 com transparência, .gif, .webp animado ou .svg animado)
+ *     e, se houver, uma versão estática (robotStatic) para quem prefere movimento reduzido.
+ * Enquanto `image` estiver vazio, o bloco usa a captura real do Chat Gravon IA no Pipeflow.
+ */
+export const gravonIa: {
+  image?: Screen;
+  robot?: { src: string; width: number; height: number; alt: string };
+  robotStatic?: { src: string; width: number; height: number };
+} = {
+  image: undefined,
+  robot: undefined,
+  robotStatic: undefined,
+};

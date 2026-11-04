@@ -9,8 +9,8 @@
  */
 
 const MAX_BYTES = 8 * 1024;
-const REQUIRED = ["event_id", "faturamento", "name", "whatsapp", "email", "instagram", "segmento"];
-const OPTIONAL = ["company", "cta", "form", "landing_url", "submitted_at", "utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "gclid", "fbclid"];
+const REQUIRED = ["event_id", "faturamento", "name", "whatsapp", "instagram", "segmento"];
+const OPTIONAL = ["cta", "form", "landing_url", "submitted_at", "utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "gclid", "fbclid"];
 
 function cors(origin, allowed) {
   const ok = origin && allowed.includes(origin);
@@ -38,7 +38,6 @@ export function validate(input) {
   const digits = out.whatsapp.replace(/\D/g, "");
   if (digits.length < 10 || digits.length > 13) return { error: "invalid_whatsapp" };
   out.whatsapp = digits;
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(out.email)) return { error: "invalid_email" };
   if (!/^@?[A-Za-z0-9._]{1,30}$/.test(out.instagram)) return { error: "invalid_instagram" };
   for (const k of OPTIONAL) {
     if (typeof input[k] === "string" && input[k].trim()) out[k] = input[k].trim().slice(0, 500);

@@ -7,10 +7,11 @@ import {
   contactFields,
   emptyAnswers,
   maskPhone,
-  optionsConfirmed,
   revenueOptions,
-  segmentOptions,
+  segmentPlaceholder,
+  segmentQuestion,
   steps,
+  cleanInstagram,
   validateField,
   type LeadAnswers,
 } from "@/content/lead-form";
@@ -18,7 +19,7 @@ import { trackLead } from "../Analytics";
 
 type Status = "idle" | "sending" | "success" | "error";
 const UTM_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "gclid", "fbclid"];
-const stepKeys: (keyof LeadAnswers)[][] = [["revenue"], ["name", "whatsapp", "email", "instagram", "company"], ["segment"]];
+const stepKeys: (keyof LeadAnswers)[][] = [["revenue"], ["name", "whatsapp", "instagram"], ["segment"]];
 
 function newId() {
   return typeof crypto !== "undefined" && "randomUUID" in crypto ? crypto.randomUUID() : `${Date.now()}-${Math.random().toString(16).slice(2)}`;
@@ -111,7 +112,7 @@ export function LeadModal({ open, source, onClose }: { open: boolean; source: st
       const p = new URLSearchParams(window.location.search);
       utms = Object.fromEntries(UTM_KEYS.flatMap((k) => (p.get(k) ? [[k, p.get(k)!.slice(0, 200)]] : [])));
     } catch { /* ignora */ }
-    const ig = answers.instagram.trim().replace(/^https?:\/\/(www\.)?instagram\.com\//i, "").replace(/\/$/, "");
+    const ig = cleanInstagram(answers.instagram);
     const payload = {
       event_id: id,
       form: "site-gravon-popup",
@@ -119,10 +120,8 @@ export function LeadModal({ open, source, onClose }: { open: boolean; source: st
       faturamento: answers.revenue,
       name: answers.name.trim(),
       whatsapp: answers.whatsapp.replace(/\D/g, ""),
-      email: answers.email.trim(),
       instagram: ig.startsWith("@") ? ig : `@${ig}`,
-      company: answers.company.trim(),
-      segmento: answers.segment,
+      segmento: answers.segment.trim(),
       landing_url: window.location.href.split("#")[0],
       submitted_at: new Date().toISOString(),
       ...utms,
@@ -211,7 +210,7 @@ export function LeadModal({ open, source, onClose }: { open: boolean; source: st
                     <input
                       name={f.key}
                       type={f.type}
-                      inputMode={f.type === "tel" ? "tel" : f.type === "email" ? "email" : undefined}
+                      inputMode={f.type === "tel" ? "tel" : undefined}
                       autoComplete={f.autoComplete}
                       placeholder={f.placeholder}
                       value={answers[f.key]}
@@ -219,7 +218,8 @@ export function LeadModal({ open, source, onClose }: { open: boolean; source: st
                       onBlur={(e) => setErrors((x) => ({ ...x, [f.key]: validateField(f.key, e.target.value) }))}
                       aria-invalid={Boolean(err(f.key))}
                       aria-describedby={err(f.key) ? `err-${f.key}` : undefined}
-                      maxLength={f.key === "whatsapp" ? 16 : 120}
+                      maxLength={f.key === "whatsapp" ? 16 : 80}
+                      onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(); next(); } }}
                       className={`w-full rounded-xl bg-sand-50 px-4 py-3 text-[15px] text-ink-900 ring-1 placeholder:text-zinc-400 focus:bg-white focus:outline-none focus:ring-2 ${err(f.key) ? "ring-red-400 focus:ring-red-500" : "ring-ink-900/10 focus:ring-gold-500"}`}
                     />
                     {err(f.key) ? <FieldError id={`err-${f.key}`} msg={err(f.key)!} /> : null}
@@ -229,9 +229,23 @@ export function LeadModal({ open, source, onClose }: { open: boolean; source: st
             </fieldset>
           ) : (
             <fieldset>
-              <legend className="font-display text-xl font-bold text-ink-900">Qual é o segmento da sua empresa?</legend>
-              <OptionList name="segment" options={segmentOptions} value={answers.segment} onChange={(v) => set("segment", v)} />
-              {err("segment") ? <FieldError msg={err("segment")!} /> : null}
+              <label className="block">
+                <span className="font-display text-xl font-bold text-ink-900">{segmentQuestion} *</span>
+                <input
+                  name="segment"
+                  type="text"
+                  autoComplete="off"
+                  placeholder={segmentPlaceholder}
+                  value={answers.segment}
+                  onChange={(e) => set("segment", e.target.value)}
+                  onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(); submit(); } }}
+                  aria-invalid={Boolean(err("segment"))}
+                  aria-describedby={err("segment") ? "err-segment" : undefined}
+                  maxLength={120}
+                  className={`mt-4 w-full rounded-xl bg-sand-50 px-4 py-3 text-[15px] text-ink-900 ring-1 placeholder:text-zinc-400 focus:bg-white focus:outline-none focus:ring-2 ${err("segment") ? "ring-red-400 focus:ring-red-500" : "ring-ink-900/10 focus:ring-gold-500"}`}
+                />
+                {err("segment") ? <FieldError id="err-segment" msg={err("segment")!} /> : null}
+              </label>
               <p className="mt-4 text-xs leading-relaxed text-zinc-500">Ao enviar, você concorda em ser contatado pela Gravon Company sobre esta solicitação.</p>
             </fieldset>
           )}
@@ -240,9 +254,6 @@ export function LeadModal({ open, source, onClose }: { open: boolean; source: st
             <div role="alert" className="mt-4 flex items-start gap-2 rounded-xl bg-red-50 p-3 text-sm text-red-700 ring-1 ring-red-200">
               <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" aria-hidden /> {errorMsg}
             </div>
-          ) : null}
-          {!optionsConfirmed && status !== "success" ? (
-            <p className="mt-4 rounded-lg bg-gold-50 px-3 py-2 text-[11px] leading-snug text-gold-700 ring-1 ring-gold-200">Prévia: opções provisórias, a conferir com o formulário oficial de ia.gravoncompany.com.</p>
           ) : null}
         </div>
 

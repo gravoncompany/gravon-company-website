@@ -28,5 +28,7 @@ export const clinic = {
   initial: "A",
   procedure: "Limpeza de pele profunda",
   reelsQuestion: "Limpeza de pele dói?",
-  campaign: "Avaliação facial · Meta Ads",
+  campaign: "Limpeza de pele · Meta Ads",
+  lead: { name: "Mariana Souza", first: "Mariana", interest: "Limpeza de pele" },
+  aiSummary: "Interessada em limpeza de pele. Perguntou sobre horários para avaliação.",
 } as const;

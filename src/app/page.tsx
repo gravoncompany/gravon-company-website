@@ -5,6 +5,7 @@ import { Journey } from "@/components/sections/Journey";
 import { Pipeflow } from "@/components/sections/Pipeflow";
 import { Portal } from "@/components/sections/Portal";
 import { Methodology } from "@/components/sections/Methodology";
+import { Process } from "@/components/sections/Process";
 import { DemoProject } from "@/components/sections/DemoProject";
 import { ContactCta } from "@/components/sections/ContactCta";
 
@@ -18,6 +19,7 @@ export default function HomePage() {
       <Pipeflow />
       <Portal />
       <Methodology />
+      <Process />
       <DemoProject />
       <ContactCta />
     </>

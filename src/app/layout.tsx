@@ -6,6 +6,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Analytics } from "@/components/Analytics";
 import { LeadModalProvider } from "@/components/lead/LeadModalProvider";
+import { GravonIaChat } from "@/components/GravonIaChat";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap", weight: ["400", "500", "600"] });
 const jakarta = Plus_Jakarta_Sans({ subsets: ["latin"], variable: "--font-jakarta", display: "swap", weight: ["600", "700", "800"] });
@@ -89,6 +90,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Header />
           <main id="conteudo">{children}</main>
           <Footer />
+          <GravonIaChat />
         </LeadModalProvider>
         <Analytics />
         <script
