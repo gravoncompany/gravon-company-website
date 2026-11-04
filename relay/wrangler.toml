@@ -1,0 +1,8 @@
+name = "gravon-lead-relay"
+main = "src/index.js"
+compatibility_date = "2026-10-01"
+
+[vars]
+ALLOWED_ORIGINS = "https://gravoncompany.github.io,https://gravoncompany.com,https://www.gravoncompany.com"
+
+# Segredo (não versionar): npx wrangler secret put ZAPIER_WEBHOOK_URL

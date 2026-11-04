@@ -8,6 +8,7 @@ import { Container } from "../ui/Container";
 import { SectionHeading } from "../ui/SectionHeading";
 import { Reveal } from "../ui/Reveal";
 import { Button } from "../ui/Button";
+import { LeadButton } from "../lead/LeadButton";
 import { ScreenshotSlot } from "../ui/ScreenshotSlot";
 
 const features = [
@@ -76,9 +77,11 @@ export function Pipeflow() {
         </ul>
 
         <Reveal className="mt-12 flex justify-center">
-          <Button href={site.links.pipeflow ?? "#contato"} external={Boolean(site.links.pipeflow)} arrow>
-            Conheça o Pipeflow
-          </Button>
+          {site.links.pipeflow ? (
+            <Button href={site.links.pipeflow} external arrow>Conheça o Pipeflow</Button>
+          ) : (
+            <LeadButton source="pipeflow" arrow>Conheça o Pipeflow</LeadButton>
+          )}
         </Reveal>
       </Container>
     </section>

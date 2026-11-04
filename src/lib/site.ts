@@ -33,7 +33,7 @@ export const site = {
   ],
   contact: {
     whatsapp: digitsOnly(process.env.NEXT_PUBLIC_WHATSAPP_NUMBER),
-    formEndpoint: env(process.env.NEXT_PUBLIC_CONTACT_FORM_ENDPOINT),
+    leadEndpoint: env(process.env.NEXT_PUBLIC_LEAD_ENDPOINT),
     email: env(process.env.NEXT_PUBLIC_CONTACT_EMAIL),
     instagram: env(process.env.NEXT_PUBLIC_INSTAGRAM_URL),
   },
@@ -54,7 +54,7 @@ export const nav = [
   { href: "#pipeflow", label: "Pipeflow CRM" },
   { href: "#portal", label: "Portal" },
   { href: "#metodologia", label: "Metodologia" },
-  { href: "#projetos", label: "Projetos" },
+  { href: "#projeto-demonstrativo", label: "Projeto demo" },
 ] as const;
 
 /** Prefixa arquivos de /public com o basePath (necessário em hospedagem em subcaminho). */

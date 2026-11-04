@@ -63,15 +63,17 @@ Derivada do código da landing page do Pipeflow (`gravoncompany/pipeflow-landing
 4. **Jornada** (branco) — "Gerar leads é apenas o começo." com funil escalonado de 7 etapas.
 5. **Pipeflow CRM** (escuro) — abas com 3 capturas reais (Pipeline, Ficha do lead, Gravon IA) e recursos.
 6. **Portal Gravon** (areia) — "Dashboard do Portal" (dados de demonstração substituídos na própria imagem) e "Próximos passos", lado a lado no desktop e empilhados no celular, com versão própria para celular e ampliação ao clicar. Arquivos em `public/images/portal/` (`portal-dashboard-demo`, `portal-dashboard-demo-mobile`, `portal-proximos-passos`, `portal-proximos-passos-mobile`), configurados em `src/content/media.ts`.
-7. **Metodologia CMC** (escuro) — 4 etapas em abas com avanço automático e painel de detalhes.
-8. **Projetos e cases** (branco) — filtros e espaços reservados até haver cases autorizados.
-9. **Chamada comercial** (dourado) — CTA + formulário.
+7. **Metodologia CMC** (preto) — funil vertical A·Q·C·R em texto editável; no desktop o funil fica ao lado das explicações, no celular cada etapa aparece com sua descrição.
+8. **Projeto demonstrativo** (branco) — "Veja como seria um projeto com a Gravon" com a clínica fictícia Aurora Estética: carrossel, capa de Reels e Stories; anúncio que leva ao WhatsApp; card no Pipeflow.
+9. **Chamada comercial** (dourado) — título e um único botão.
 
-## Marca
+## Pop-up de captação
 
-- Logotipo oficial: `public/brand/gravon-logo.png` (transparente), usado no cabeçalho e no rodapé.
-- Favicon/ícones: `src/app/icon.png`, `src/app/apple-icon.png` e `src/app/favicon.ico`, gerados a partir do símbolo "G".
-- Se houver versão vetorial (SVG) do logotipo, substitua o PNG para nitidez máxima em telas de alta densidade.
+Todos os botões de captação (cabeçalho, menu do celular, hero, Pipeflow, chamada final e rodapé) abrem o mesmo
+pop-up em 3 etapas — Faturamento → Dados de contato (com Instagram) → Segmento — com progresso, voltar sem perder
+respostas, confirmação no pop-up e nova tentativa em caso de erro. Opções e obrigatoriedade em
+`src/content/lead-form.ts` (**provisórias** até a conferência com ia.gravoncompany.com). Envio: `NEXT_PUBLIC_LEAD_ENDPOINT`
+→ relay em `relay/` → Zapier.
 
 ## Conteúdo: regras
 
@@ -85,14 +87,14 @@ Derivada do código da landing page do Pipeflow (`gravoncompany/pipeflow-landing
 | Variável | Efeito |
 |---|---|
 | `NEXT_PUBLIC_WHATSAPP_NUMBER` | Ativa botões de WhatsApp e o envio do formulário via WhatsApp |
-| `NEXT_PUBLIC_CONTACT_FORM_ENDPOINT` | Formulário faz `POST` JSON (nome, empresa, telefone, e-mail, interesse, mensagem, consentimento, página e UTMs/gclid/fbclid) |
+| `NEXT_PUBLIC_LEAD_ENDPOINT` | URL do relay (`relay/`) que recebe o pop-up e repassa ao Zapier; no deploy da prévia vem da variável de repositório `LEAD_ENDPOINT` |
 | `NEXT_PUBLIC_CONTACT_EMAIL`, `NEXT_PUBLIC_INSTAGRAM_URL` | Exibidos no rodapé e no JSON-LD |
 | `NEXT_PUBLIC_PIPEFLOW_URL`, `NEXT_PUBLIC_PORTAL_URL` | Destino de “Conheça o Pipeflow” e link de acesso ao Portal |
 | `NEXT_PUBLIC_GTM_ID`, `NEXT_PUBLIC_GA4_ID`, `NEXT_PUBLIC_META_PIXEL_ID` | Carregados **somente após consentimento** do visitante; evento `generate_lead`/`Lead` no envio do formulário |
 | `NEXT_PUBLIC_SITE_URL` | URL canônica (padrão `https://gravoncompany.com`) |
 | `NEXT_PUBLIC_ALLOW_INDEXING=true` | Libera indexação. Sem ela, o site sai com `noindex` e `robots.txt` bloqueando tudo |
 
-Sem WhatsApp nem endpoint, o formulário informa que está em modo demonstração.
+Sem `NEXT_PUBLIC_LEAD_ENDPOINT`, o pop-up informa que o envio ainda não está conectado e mantém as respostas.
 
 ## Publicação futura (somente após aprovação)
 

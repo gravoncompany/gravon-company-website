@@ -47,7 +47,8 @@ jobs:
         run: |
           npm ci
           npm run typecheck
-          NEXT_PUBLIC_BASE_PATH="$BASE/redesign" NEXT_PUBLIC_SITE_URL="$SITE/redesign" npm run build
+          npm run test:relay
+          NEXT_PUBLIC_BASE_PATH="$BASE/redesign" NEXT_PUBLIC_SITE_URL="$SITE/redesign" NEXT_PUBLIC_LEAD_ENDPOINT="${{ vars.LEAD_ENDPOINT }}" npm run build
       - name: Montar site
         run: |
           mkdir -p site

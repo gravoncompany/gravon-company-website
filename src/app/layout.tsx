@@ -5,6 +5,7 @@ import { site } from "@/lib/site";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Analytics } from "@/components/Analytics";
+import { LeadModalProvider } from "@/components/lead/LeadModalProvider";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap", weight: ["400", "500", "600"] });
 const jakarta = Plus_Jakarta_Sans({ subsets: ["latin"], variable: "--font-jakarta", display: "swap", weight: ["600", "700", "800"] });
@@ -84,9 +85,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         >
           Pular para o conteúdo
         </a>
-        <Header />
-        <main id="conteudo">{children}</main>
-        <Footer />
+        <LeadModalProvider>
+          <Header />
+          <main id="conteudo">{children}</main>
+          <Footer />
+        </LeadModalProvider>
         <Analytics />
         <script
           type="application/ld+json"

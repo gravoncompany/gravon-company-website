@@ -2,6 +2,7 @@ import { Bot, LayoutTemplate, Megaphone, Search } from "lucide-react";
 import { pipeflowScreens } from "@/content/media";
 import { Container } from "../ui/Container";
 import { Button } from "../ui/Button";
+import { LeadButton } from "../lead/LeadButton";
 import { Reveal } from "../ui/Reveal";
 import { ScreenshotSlot } from "../ui/ScreenshotSlot";
 import { AdSearchCard, AiSignalCard, PortalCard, SocialAdCard } from "../mockups/HeroCards";
@@ -35,7 +36,7 @@ export function Hero() {
           </Reveal>
           <Reveal delay={240} className="mt-9 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
             <Button href="#solucoes" arrow>Conheça nossas soluções</Button>
-            <Button href="#contato" variant="ghost-dark">Fale com um especialista</Button>
+            <LeadButton source="hero" variant="ghost-dark">Fale com um especialista</LeadButton>
           </Reveal>
           <Reveal delay={300}>
             <ul className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-zinc-400">

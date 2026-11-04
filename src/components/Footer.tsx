@@ -2,6 +2,7 @@ import { AtSign, Mail, MessageCircle } from "lucide-react";
 import { nav, site, whatsappLink } from "@/lib/site";
 import { Container } from "./ui/Container";
 import { Logo } from "./ui/Logo";
+import { LeadButton } from "./lead/LeadButton";
 
 export function Footer() {
   const wa = whatsappLink();
@@ -32,7 +33,7 @@ export function Footer() {
               {wa ? <li><a href={wa} target="_blank" rel="noopener noreferrer" className={`${link} inline-flex items-center gap-2`}><MessageCircle className="h-4 w-4" aria-hidden />WhatsApp</a></li> : null}
               {site.contact.email ? <li><a href={`mailto:${site.contact.email}`} className={`${link} inline-flex items-center gap-2`}><Mail className="h-4 w-4" aria-hidden />{site.contact.email}</a></li> : null}
               {site.contact.instagram ? <li><a href={site.contact.instagram} target="_blank" rel="noopener noreferrer" className={`${link} inline-flex items-center gap-2`}><AtSign className="h-4 w-4" aria-hidden />Instagram</a></li> : null}
-              <li><a href="#contato" className={link}>Formulário de contato</a></li>
+              <li><LeadButton source="rodape" plain className={`${link} text-left`}>Fale com a Gravon</LeadButton></li>
               {site.links.portal ? <li><a href={site.links.portal} className={link}>Acesso ao Portal Gravon</a></li> : null}
             </ul>
           </div>

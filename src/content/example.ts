@@ -17,3 +17,16 @@ export const example = {
   sitelinks: ["Áreas de atuação", "Sobre o escritório", "Contato"],
   services: ["Direito Eleitoral", "Direito Administrativo", "Improbidade", "Direito Penal"],
 } as const;
+
+/**
+ * Clínica de estética FICTÍCIA usada na seção "Veja como seria um projeto com a Gravon"
+ * (projeto demonstrativo). Não é um cliente real.
+ */
+export const clinic = {
+  name: "Aurora Estética",
+  handle: "aurora.estetica",
+  initial: "A",
+  procedure: "Limpeza de pele profunda",
+  reelsQuestion: "Limpeza de pele dói?",
+  campaign: "Avaliação facial · Meta Ads",
+} as const;

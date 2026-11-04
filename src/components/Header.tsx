@@ -5,7 +5,7 @@ import { Menu, X } from "lucide-react";
 import { nav } from "@/lib/site";
 import { Container } from "./ui/Container";
 import { Logo } from "./ui/Logo";
-import { Button } from "./ui/Button";
+import { LeadButton } from "./lead/LeadButton";
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -39,7 +39,7 @@ export function Header() {
           ))}
         </nav>
         <div className="hidden lg:block">
-          <Button href="#contato" className="!min-h-[42px] !px-5 !py-2 !text-sm">Fale com um especialista</Button>
+          <LeadButton source="cabecalho" className="!min-h-[42px] !px-5 !py-2 !text-sm">Fale com um especialista</LeadButton>
         </div>
         <button
           type="button"
@@ -60,8 +60,8 @@ export function Header() {
                 {item.label}
               </a>
             ))}
-            <div className="mt-3" onClick={() => setOpen(false)}>
-              <Button href="#contato" className="w-full" arrow>Fale com um especialista</Button>
+            <div className="mt-3">
+              <LeadButton source="menu-celular" className="w-full" arrow onClick={() => setOpen(false)}>Fale com um especialista</LeadButton>
             </div>
           </Container>
         </div>
