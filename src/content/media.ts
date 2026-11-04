@@ -40,5 +40,19 @@ export const pipeflowScreens: { id: string; label: string; screen: Screen }[] = 
   },
 ];
 
-/** Captura real do Portal Gravon. Enquanto `undefined`, o site mostra um mockup ilustrativo. */
-export const portalScreen: Screen | undefined = undefined;
+/**
+ * Captura real do Portal Gravon (Dashboard · Meta Ads · últimos 30 dias).
+ * - `full`: captura inteira (abre ampliada)
+ * - `desktop`: recorte do cabeçalho, filtros e resumo executivo
+ * - `mobile`: cartões de indicadores recortados um a um para leitura no celular
+ * Para trocar: substitua os arquivos em /public/images/portal mantendo os nomes, ou ajuste aqui.
+ */
+export const portalScreens = {
+  full: { src: "/images/portal/dashboard-completo.webp", width: 2000, height: 1143, title: "Portal Gravon · Dashboard", alt: "Dashboard do Portal Gravon com período, filtros por plataforma, resumo executivo e gráfico de evolução dos resultados" },
+  desktop: { src: "/images/portal/dashboard-resumo.webp", width: 1690, height: 640, title: "Portal Gravon · Dashboard", alt: "Portal Gravon: dashboard de Marketing e vendas com filtros de período e resumo executivo com investimento total, resultados gerados, custo por resultado e conversões comerciais" },
+  mobile: [
+    { src: "/images/portal/kpi-investimento.webp", width: 408, height: 204, title: "Investimento total", alt: "Cartão Investimento total do Portal Gravon" },
+    { src: "/images/portal/kpi-resultados.webp", width: 408, height: 204, title: "Resultados gerados", alt: "Cartão Resultados gerados do Portal Gravon" },
+    { src: "/images/portal/kpi-custo.webp", width: 408, height: 204, title: "Custo por resultado", alt: "Cartão Custo por resultado do Portal Gravon" },
+  ],
+} satisfies { full: Screen; desktop: Screen; mobile: Screen[] };
