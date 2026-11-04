@@ -1,19 +1,55 @@
 "use client";
 
 import { useId, useState } from "react";
-import { Check, ChevronDown, Minus } from "lucide-react";
+import { Check, ChevronDown, Minus, Sparkles } from "lucide-react";
 import { Container } from "../ui/Container";
 import { SectionHeading } from "../ui/SectionHeading";
 import { Reveal } from "../ui/Reveal";
 import { LeadButton } from "../lead/LeadButton";
 
 type PlanId = "essencial" | "growth" | "premium";
-type Plan = { id: PlanId; name: string; tagline: string; highlights: string[] };
+type Item = { title: string; text: string; badge?: string };
+type Plan = { id: PlanId; name: string; tagline: string; intro?: string; items: Item[] };
 
 const plans: Plan[] = [
-  { id: "essencial", name: "Essencial", tagline: "Comece a captar leads.", highlights: ["Gestão em um canal: Google Ads ou Meta Ads", "Rastreamento de conversões", "Adaptação de materiais existentes para anúncios"] },
-  { id: "growth", name: "Growth", tagline: "Acompanhe o lead do anúncio até a venda.", highlights: ["Gestão em até dois canais com remarketing", "Criação de peças para anúncios", "Acompanhamento pelo Pipeflow e pelo Portal Gravon"] },
-  { id: "premium", name: "Premium", tagline: "Melhore o atendimento e o follow-up.", highlights: ["Tudo do Growth, com Gravon IA para analisar conversas e sugerir respostas", "Automações comerciais", "Revisão do funil de vendas"] },
+  {
+    id: "essencial",
+    name: "Essencial",
+    tagline: "Comece a captar leads.",
+    items: [
+      { title: "Gestão de tráfego pago", text: "Planejamento, configuração e otimização de campanhas em um canal, Google Ads ou Meta Ads." },
+      { title: "Rastreamento de conversões", text: "Configuração da medição das ações que indicam interesse, como envio de formulário ou clique no WhatsApp." },
+      { title: "Landing page", text: "Criação de uma página durante a implementação, com apresentação da oferta e chamada para contato." },
+      { title: "Materiais para anúncios", text: "Adaptação das imagens e dos vídeos que a empresa já tem para os formatos das campanhas." },
+      { title: "Social media", text: "Planejamento de pautas e criação de até 4 posts por mês para as redes sociais." },
+    ],
+  },
+  {
+    id: "growth",
+    name: "Growth",
+    tagline: "Acompanhe o lead do anúncio até a venda.",
+    items: [
+      { title: "Tráfego em até dois canais", text: "Gestão de campanhas no Google Ads e Meta Ads, com remarketing para alcançar novamente quem já interagiu com a empresa." },
+      { title: "Criativos para campanhas publicitárias", text: "Criação de peças com chamadas, ofertas e formatos adequados para cada campanha." },
+      { title: "Social media", text: "Planejamento de pautas e criação de até 8 posts por mês no total." },
+      { title: "Criação e edição de vídeos", text: "Até 2 vídeos mensais, com edição, recursos de IA e motion graphics." },
+      { title: "CRM Pipeflow", text: "Organização dos leads por origem e etapa do funil, com integração básica ao WhatsApp para acompanhar os contatos." },
+      { title: "Automações comerciais", text: "Configuração de rotinas para organizar as informações dos leads no CRM e facilitar o acompanhamento pela equipe." },
+      { title: "Portal Gravon", text: "Acesso a relatórios de desempenho, registro das otimizações realizadas e próximos passos do projeto." },
+      { title: "Acompanhamento estratégico", text: "Revisão da evolução das campanhas e das etapas do funil durante a implementação." },
+    ],
+  },
+  {
+    id: "premium",
+    name: "Premium",
+    tagline: "Melhore o atendimento e o follow-up.",
+    intro: "Tudo do Growth, com Gravon IA para analisar conversas e sugerir respostas, automações comerciais e revisão do funil de vendas. Além disso:",
+    items: [
+      { title: "Social media", text: "Planejamento de pautas e criação de até 12 posts por mês no total." },
+      { title: "Criação e edição de vídeos", text: "Até 4 vídeos mensais no total, com IA e motion graphics.", badge: "Até 1 vídeo mensal 100% gerado por IA, conforme o escopo" },
+      { title: "Criativos publicitários personalizados", text: "Criação de peças para ofertas e públicos específicos." },
+    ],
+  },
 ];
 
 const order: PlanId[] = ["essencial", "growth", "premium"];
@@ -51,13 +87,24 @@ function PlanCard({ plan }: { plan: Plan }) {
         </h3>
         <p className="mt-3 text-[16px] font-semibold leading-snug text-zinc-200">{plan.tagline}</p>
         <div className={`my-6 h-px ${hl ? "bg-gold-400/40" : "bg-white/10"}`} />
-        <ul className="space-y-3">
-          {plan.highlights.map((h) => (
-            <li key={h} className="flex items-start gap-3">
+        {plan.intro ? (
+          <p className={`mb-5 rounded-xl px-4 py-3 text-[14px] leading-snug ${hl ? "bg-gold-400/10 text-gold-100 ring-1 ring-gold-400/30" : "bg-white/[.04] text-zinc-200 ring-1 ring-white/10"}`}>{plan.intro}</p>
+        ) : null}
+        <ul className="space-y-4">
+          {plan.items.map((it) => (
+            <li key={it.title} className="flex items-start gap-3">
               <span className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full ${hl ? "bg-gold-400 text-ink-950" : "bg-gold-400/20 text-gold-300"}`}>
                 <Check className="h-3 w-3" strokeWidth={3} aria-hidden />
               </span>
-              <span className="text-[15px] leading-snug text-zinc-300">{h}</span>
+              <span className="min-w-0 text-[14.5px] leading-snug text-zinc-300">
+                <strong className="block font-semibold text-white">{it.title}</strong>
+                {it.text}
+                {it.badge ? (
+                  <span className="mt-2 flex w-fit items-start gap-1.5 rounded-lg bg-gold-400/15 px-2.5 py-1.5 text-[13px] font-semibold leading-snug text-gold-200 ring-1 ring-gold-400/40">
+                    <Sparkles className="mt-0.5 h-3.5 w-3.5 shrink-0" aria-hidden />{it.badge}
+                  </span>
+                ) : null}
+              </span>
             </li>
           ))}
         </ul>
