@@ -31,19 +31,19 @@ export function Header() {
         <a href="#topo" aria-label="Gravon Company — início" onClick={() => setOpen(false)}>
           <Logo />
         </a>
-        <nav className="hidden items-center gap-8 lg:flex" aria-label="Principal">
+        <nav className="hidden items-center gap-7 xl:flex" aria-label="Principal">
           {nav.map((item) => (
             <a key={item.href} href={item.href} className="text-sm font-medium text-zinc-300 transition-colors hover:text-white">
               {item.label}
             </a>
           ))}
         </nav>
-        <div className="hidden lg:block">
+        <div className="hidden xl:block">
           <LeadButton source="cabecalho" className="!min-h-[42px] !px-5 !py-2 !text-sm">Fale com um especialista</LeadButton>
         </div>
         <button
           type="button"
-          className="flex h-11 w-11 items-center justify-center rounded-lg text-white lg:hidden"
+          className="flex h-11 w-11 items-center justify-center rounded-lg text-white xl:hidden"
           aria-expanded={open}
           aria-controls="mobile-menu"
           aria-label={open ? "Fechar menu" : "Abrir menu"}
@@ -53,7 +53,7 @@ export function Header() {
         </button>
       </Container>
       {open ? (
-        <div id="mobile-menu" className="border-t border-white/5 lg:hidden">
+        <div id="mobile-menu" className="border-t border-white/5 xl:hidden">
           <Container className="flex flex-col gap-1 py-4">
             {nav.map((item) => (
               <a key={item.href} href={item.href} onClick={() => setOpen(false)} className="rounded-lg px-3 py-3 text-base font-medium text-zinc-200 hover:bg-white/5">

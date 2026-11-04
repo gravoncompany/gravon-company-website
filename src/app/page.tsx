@@ -8,6 +8,7 @@ import { Methodology } from "@/components/sections/Methodology";
 import { Process } from "@/components/sections/Process";
 import { SalesFunnel } from "@/components/sections/SalesFunnel";
 import { Implementation90 } from "@/components/sections/Implementation90";
+import { Plans } from "@/components/sections/Plans";
 import { About } from "@/components/sections/About";
 import { DemoProject } from "@/components/sections/DemoProject";
 import { ContactCta } from "@/components/sections/ContactCta";
@@ -26,6 +27,7 @@ export default function HomePage() {
       <SalesFunnel />
       <Implementation90 />
       <DemoProject />
+      <Plans />
       <About />
       <ContactCta />
     </>

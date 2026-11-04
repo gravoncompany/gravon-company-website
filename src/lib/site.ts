@@ -55,6 +55,7 @@ export const nav = [
   { href: "#metodologia", label: "Metodologia" },
   { href: "#implementacao-90-dias", label: "90 dias" },
   { href: "#projeto-demonstrativo", label: "Projeto demo" },
+  { href: "#planos", label: "Planos" },
   { href: "#sobre", label: "Sobre" },
 ] as const;
 
