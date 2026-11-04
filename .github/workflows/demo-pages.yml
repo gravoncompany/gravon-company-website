@@ -1,10 +1,11 @@
-# Versão de demonstração no GitHub Pages (não usa o domínio gravoncompany.com).
-# A demo sai com noindex/robots bloqueado (NEXT_PUBLIC_ALLOW_INDEXING não é definido aqui).
+# Demonstração no GitHub Pages (não usa o domínio gravoncompany.com; noindex mantido).
+#   /gravon-company-website/          → branch main (versão atual)
+#   /gravon-company-website/redesign/ → branch redesign (nova direção de design)
 name: Demo (GitHub Pages)
 
 on:
   push:
-    branches: [main]
+    branches: [main, redesign]
   workflow_dispatch:
 
 permissions:
@@ -19,27 +20,46 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      STATIC_EXPORT: "1"
+      BASE: /${{ github.event.repository.name }}
+      SITE: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
+          path: main
+      - uses: actions/checkout@v4
+        with:
+          ref: redesign
+          path: redesign
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: npm
-      - run: npm ci
-      - run: npm run typecheck
-      - name: Build estático
-        run: npm run build
-        env:
-          STATIC_EXPORT: "1"
-          NEXT_PUBLIC_BASE_PATH: /${{ github.event.repository.name }}
-          NEXT_PUBLIC_SITE_URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}
-      - run: touch out/.nojekyll
+      - name: Build main (raiz)
+        working-directory: main
+        run: |
+          npm ci
+          npm run typecheck
+          NEXT_PUBLIC_BASE_PATH="$BASE" NEXT_PUBLIC_SITE_URL="$SITE" npm run build
+      - name: Build redesign (/redesign)
+        working-directory: redesign
+        run: |
+          npm ci
+          npm run typecheck
+          npm run test:relay
+          NEXT_PUBLIC_BASE_PATH="$BASE/redesign" NEXT_PUBLIC_SITE_URL="$SITE/redesign" NEXT_PUBLIC_LEAD_ENDPOINT="${{ vars.LEAD_ENDPOINT }}" npm run build
+      - name: Montar site
+        run: |
+          mkdir -p site
+          cp -r main/out/. site/
+          mkdir -p site/redesign
+          cp -r redesign/out/. site/redesign/
+          touch site/.nojekyll
       - uses: actions/configure-pages@v5
-        with:
-          enablement: true
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: out
+          path: site
 
   deploy:
     needs: build

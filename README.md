@@ -9,8 +9,8 @@ Website institucional independente da Gravon Company. Não depende nem altera o 
 
 - **Next.js 16** (App Router, páginas estáticas) + **React 19** + **TypeScript**
 - **Tailwind CSS 4** (tokens de marca em `src/app/globals.css`)
-- **Motion** (`motion/react`) para animações de entrada/interação; órbitas e brilhos em CSS puro
-- Fontes via `next/font` (Sora + Inter, auto-hospedadas no build)
+- Animações em CSS puro (Reveal por IntersectionObserver, gradiente animado, marquee) e ícones **lucide-react**
+- Fontes via `next/font` (Plus Jakarta Sans 600–800 nas headlines + Inter 400–600, auto-hospedadas no build)
 - SEO: metadados, Open Graph, JSON-LD (Organization/WebSite/ProfessionalService), `sitemap.xml`, `robots.txt`
 - Acessibilidade: HTML semântico, skip link, foco visível, `aria` em tabs/menus/formulário, `prefers-reduced-motion`
 
@@ -23,7 +23,7 @@ npm run dev                  # http://localhost:3000
 ```
 
 Produção local: `npm run build && npm start`.
-Versão estática (pasta `out/`, para hospedagem estática/preview): `STATIC_EXPORT=1 npm run build`.
+Versão estática (pasta `out/`, para hospedagem estática/preview): `STATIC_EXPORT=1 npm run build` (com `NEXT_PUBLIC_BASE_PATH=/subcaminho` para hospedar fora da raiz).
 
 ## Estrutura
 
@@ -40,16 +40,53 @@ src/
   lib/site.ts     dados da marca + leitura das variáveis de ambiente
 ```
 
+## Linguagem visual (branch `redesign`)
+
+Derivada do código da landing page do Pipeflow (`gravoncompany/pipeflow-landing-page`), com a paleta preto + dourado da Gravon:
+
+| Elemento | Pipeflow | Gravon |
+|---|---|---|
+| Headlines | Plus Jakarta Sans 800, `leading-[1.08]`, `tracking-tight`, hero até 64px | Mesma família/peso; hero até 80px |
+| Títulos de seção | `text-3xl sm:text-4xl lg:text-[44px]` bold | Igual |
+| Eyebrow | Pílula `rounded-full` com ponto, `tracking-[.14em]` | Igual, em dourado |
+| Seções | `py-20 lg:py-28`, alternando escuro/claro | Preto `#060607` / areia `#FAF8F3` / branco |
+| Botões | `rounded-xl`, `min-h-[48px]`, glow azul | Mesmo formato, dourado com glow dourado |
+| Cards | `rounded-2xl`, ring + `shadow-card`, `hover:-translate-y-1`, ícone que preenche | Igual, com ícone dourado |
+| Capturas | `BrowserFrame` + ampliação ao clicar | Igual (capturas reais do Pipeflow, dados demonstrativos) |
+| Animações | Reveal 18px/0.7s, gradiente `flow`, `float` | Iguais + marquee de frentes de atuação |
+
 ## Seções da página
 
-1. **Hero** — headline, subtítulo, CTAs e sistema orbital animado (Google Ads, Meta Ads, CRM, IA, Dados, WhatsApp).
-2. **O diferencial Gravon** — jornada Google/Meta Ads → Captação → CRM → Qualificação → Atendimento → Conversão → Análise.
-3. **Nossas soluções** — 6 cards (Google Ads, Meta Ads, Sites/LPs, CRM com IA, Automação, Dados).
-4. **Pipeflow CRM** — recursos e representação ilustrativa da interface (substituível por captura real).
-5. **Portal Gravon** — recursos e dashboard ilustrativo (valores ocultos; substituível por captura real).
-6. **Metodologia CMC** — mostrador interativo (clique/teclado, avanço automático) com as 4 etapas.
-7. **Projetos e cases** — filtros por categoria e espaços reservados até haver cases autorizados.
-8. **Chamada comercial** — CTA para WhatsApp + formulário de contato.
+1. **Hero** (escuro) — headline de 80px, CTAs e composição: captura real do Pipeflow cercada por cartões de Google Ads, Meta Ads, Gravon IA e Portal.
+2. **Faixa de frentes** — marquee com as áreas de atuação.
+3. **Soluções** (areia) — prévias de Google Ads (busca com resultado Patrocinado), Meta Ads (anúncio no feed do Instagram) e landing page em celular, todas com a mesma empresa de exemplo fictícia (`src/content/example.ts`), seguidas de Automação, Dados e CRM com IA.
+4. **Jornada** (branco) — "Gerar leads é apenas o começo." com funil escalonado de 7 etapas.
+5. **Pipeflow CRM** (escuro) — abas com 3 capturas reais (Pipeline, Ficha do lead, Gravon IA) e recursos.
+6. **Portal Gravon** (areia) — "Dashboard do Portal" (dados de demonstração substituídos na própria imagem) e "Próximos passos", lado a lado no desktop e empilhados no celular, com versão própria para celular e ampliação ao clicar. Arquivos em `public/images/portal/` (`portal-dashboard-demo`, `portal-dashboard-demo-mobile`, `portal-proximos-passos`, `portal-proximos-passos-mobile`), configurados em `src/content/media.ts`.
+7. **Metodologia CMC** (preto) — funil com volume (A·Q·C·R); cada camada é um botão (teclado: setas, Home/End). Abre em Atração; explicação ao lado no desktop e logo abaixo da etapa ativa no celular.
+8. **Nosso processo** (universo) — linha do tempo vertical que avança com a rolagem: Tráfego pago & Social Media → CRM com inteligência artificial → Gravon IA conecta a operação → Visibilidade no Portal Gravon.
+9. **Como funciona o processo de marketing e vendas** (preto) — funil de 4 faixas douradas (Marketing: 1–2; Vendas: 3–4) com a passagem da captação para o atendimento comercial destacada.
+10. **Marketing e Vendas em 90 dias** (preto) — três cards mensais do projeto inicial e botão que abre o formulário (sem preço/parcelamento).
+11. **Projeto demonstrativo** (branco) — Aurora Estética e Mariana Souza (fictícias): carrossel de 2 telas, capa de Reels, 3 Stories, anúncio → WhatsApp e quadro animado do Pipeflow (Novo lead → Atendimento, resumo da Gravon IA, botão "Rever demonstração").
+12. **Planos** (preto) — Essencial, Growth (contorno dourado) e Premium, com "Quero saber mais" abrindo o formulário e "Compare todos os recursos" expandindo a tabela (coluna Growth destacada; no celular, rolagem limitada à tabela com rótulos fixos).
+13. **Conheça a Gravon Company** (preto) — retrato e visão do fundador Wilian Souza, apresentação da empresa, indicadores e selo Google Partner (`public/images/sobre/`).
+14. **Chamada comercial** (dourado) — título e um único botão.
+
+## Pop-up de captação
+
+Todos os botões de captação abrem o mesmo pop-up em 3 etapas, conferido com o formulário da Gravon IA:
+Faturamento mensal (5 faixas) → Nome, WhatsApp com DDD e Instagram (obrigatórios) → "Qual é o segmento do seu negócio?"
+(texto livre). Progresso, voltar sem perder respostas, confirmação no pop-up e nova tentativa em caso de erro.
+Configuração em `src/content/lead-form.ts`. Envio: `NEXT_PUBLIC_LEAD_ENDPOINT` → relay em `relay/` → Zapier.
+
+## Gravon IA
+
+- **Assets** em `public/images/gravon-ia/`: `hero-mascot.webp` (robô; estático, com movimento sutil e parado em
+  movimento reduzido), `hub-tecnologico.webp` (bloco "CRM com inteligência artificial") e `gravon-ia-card.webp` (painel do chat).
+- **Chat flutuante** (`src/components/GravonIaChat.tsx`): botão circular no canto inferior direito com o mascote
+  (fundo amarelo no hover), painel na própria página com fechar (X/Esc), recolhido enquanto o pop-up de captação está aberto.
+  Atendimento por IA: definir `NEXT_PUBLIC_GRAVON_IA_CHAT_ENDPOINT` (POST `{ messages, page }` → `{ reply }`).
+  Sem o endpoint, o painel mostra só atalhos (especialista, soluções, projeto demonstrativo e WhatsApp, se configurado).
 
 ## Conteúdo: regras
 
@@ -63,14 +100,14 @@ src/
 | Variável | Efeito |
 |---|---|
 | `NEXT_PUBLIC_WHATSAPP_NUMBER` | Ativa botões de WhatsApp e o envio do formulário via WhatsApp |
-| `NEXT_PUBLIC_CONTACT_FORM_ENDPOINT` | Formulário faz `POST` JSON (nome, empresa, telefone, e-mail, interesse, mensagem, consentimento, página e UTMs/gclid/fbclid) |
+| `NEXT_PUBLIC_LEAD_ENDPOINT` | URL do relay (`relay/`) que recebe o pop-up e repassa ao Zapier; no deploy da prévia vem da variável de repositório `LEAD_ENDPOINT` |
 | `NEXT_PUBLIC_CONTACT_EMAIL`, `NEXT_PUBLIC_INSTAGRAM_URL` | Exibidos no rodapé e no JSON-LD |
 | `NEXT_PUBLIC_PIPEFLOW_URL`, `NEXT_PUBLIC_PORTAL_URL` | Destino de “Conheça o Pipeflow” e link de acesso ao Portal |
 | `NEXT_PUBLIC_GTM_ID`, `NEXT_PUBLIC_GA4_ID`, `NEXT_PUBLIC_META_PIXEL_ID` | Carregados **somente após consentimento** do visitante; evento `generate_lead`/`Lead` no envio do formulário |
 | `NEXT_PUBLIC_SITE_URL` | URL canônica (padrão `https://gravoncompany.com`) |
 | `NEXT_PUBLIC_ALLOW_INDEXING=true` | Libera indexação. Sem ela, o site sai com `noindex` e `robots.txt` bloqueando tudo |
 
-Sem WhatsApp nem endpoint, o formulário informa que está em modo demonstração.
+Sem `NEXT_PUBLIC_LEAD_ENDPOINT`, o pop-up informa que o envio ainda não está conectado e mantém as respostas.
 
 ## Publicação futura (somente após aprovação)
 
@@ -82,6 +119,7 @@ Sem WhatsApp nem endpoint, o formulário informa que está em modo demonstraçã
 
 ## Demonstração online
 
-O workflow `.github/workflows/demo-pages.yml` publica uma versão estática a cada push na `main` em
-`https://gravoncompany.github.io/gravon-company-website/` (GitHub Pages, com `noindex`).
+O workflow `.github/workflows/demo-pages.yml` publica as duas versões (GitHub Pages, com `noindex`):
+- `https://gravoncompany.github.io/gravon-company-website/` — branch `main`
+- `https://gravoncompany.github.io/gravon-company-website/redesign/` — branch `redesign`
 Se o primeiro deploy falhar por Pages desativado: **Settings → Pages → Source: GitHub Actions** e rode o workflow novamente.

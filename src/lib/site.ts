@@ -33,7 +33,7 @@ export const site = {
   ],
   contact: {
     whatsapp: digitsOnly(process.env.NEXT_PUBLIC_WHATSAPP_NUMBER),
-    formEndpoint: env(process.env.NEXT_PUBLIC_CONTACT_FORM_ENDPOINT),
+    leadEndpoint: env(process.env.NEXT_PUBLIC_LEAD_ENDPOINT),
     email: env(process.env.NEXT_PUBLIC_CONTACT_EMAIL),
     instagram: env(process.env.NEXT_PUBLIC_INSTAGRAM_URL),
   },
@@ -49,13 +49,21 @@ export const site = {
 } as const;
 
 export const nav = [
-  { href: "#diferencial", label: "Diferencial" },
   { href: "#solucoes", label: "Soluções" },
-  { href: "#pipeflow", label: "Pipeflow" },
+  { href: "#pipeflow", label: "Pipeflow CRM" },
   { href: "#portal", label: "Portal" },
   { href: "#metodologia", label: "Metodologia" },
-  { href: "#projetos", label: "Projetos" },
+  { href: "#implementacao-90-dias", label: "90 dias" },
+  { href: "#projeto-demonstrativo", label: "Projeto demo" },
+  { href: "#planos", label: "Planos" },
+  { href: "#sobre", label: "Sobre" },
 ] as const;
+
+/** Prefixa arquivos de /public com o basePath (necessário em hospedagem em subcaminho). */
+export function asset(path: string) {
+  const base = (process.env.NEXT_PUBLIC_BASE_PATH ?? "").replace(/\/$/, "");
+  return `${base}${path.startsWith("/") ? path : `/${path}`}`;
+}
 
 export function whatsappLink(message = "Olá, Gravon Company! Quero conversar com um especialista.") {
   if (!site.contact.whatsapp) return undefined;

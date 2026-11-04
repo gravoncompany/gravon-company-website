@@ -26,7 +26,7 @@ export function Starfield({ count = 70, seed = 7, className = "" }: { count?: nu
           r={s.r}
           fill={i % 6 === 0 ? "#ecd29a" : "#f4f1ea"}
           opacity={s.o}
-          className={i % 4 === 0 ? "animate-pulse-soft" : undefined}
+          className={i % 4 === 0 ? "animate-pulse-dot" : undefined}
           style={i % 4 === 0 ? { animationDelay: `${s.d}s` } : undefined}
         />
       ))}

@@ -42,13 +42,13 @@ export function Analytics() {
 
   if (consent === null) {
     return (
-      <div role="dialog" aria-live="polite" aria-label="Preferências de cookies" className="fixed inset-x-4 bottom-4 z-[60] mx-auto max-w-xl rounded-2xl glass p-5 text-sm shadow-2xl sm:inset-x-auto sm:right-6">
-        <p className="text-mist-300">
+      <div role="dialog" aria-live="polite" aria-label="Preferências de cookies" className="fixed inset-x-4 bottom-4 z-[60] mx-auto max-w-xl rounded-2xl bg-ink-900 p-5 text-sm text-zinc-300 shadow-card ring-1 ring-white/10 sm:inset-x-auto sm:right-6">
+        <p className="text-zinc-300">
           Usamos cookies de medição para entender o desempenho do site e das campanhas. Você pode aceitar ou recusar.
         </p>
         <div className="mt-4 flex gap-3">
-          <button type="button" onClick={() => decide("granted")} className="rounded-full bg-gold-400 px-5 py-2 font-medium text-ink-950">Aceitar</button>
-          <button type="button" onClick={() => decide("denied")} className="rounded-full border border-white/15 px-5 py-2 text-mist-100">Recusar</button>
+          <button type="button" onClick={() => decide("granted")} className="rounded-xl bg-gold-400 px-5 py-2 font-semibold text-ink-950">Aceitar</button>
+          <button type="button" onClick={() => decide("denied")} className="rounded-xl px-5 py-2 font-semibold text-white ring-1 ring-white/15">Recusar</button>
         </div>
       </div>
     );

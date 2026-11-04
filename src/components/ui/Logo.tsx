@@ -1,27 +1,17 @@
-export function LogoMark({ className = "size-8" }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 64 64" className={className} aria-hidden>
-      <defs>
-        <linearGradient id="logo-g" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stopColor="#f6e6bf" />
-          <stop offset=".5" stopColor="#d9b46e" />
-          <stop offset="1" stopColor="#9c773a" />
-        </linearGradient>
-      </defs>
-      <ellipse cx="32" cy="32" rx="27" ry="11" fill="none" stroke="url(#logo-g)" strokeWidth="2.4" transform="rotate(-28 32 32)" />
-      <circle cx="32" cy="32" r="11" fill="url(#logo-g)" />
-      <circle cx="54" cy="20.5" r="2.6" fill="#f6e6bf" />
-    </svg>
-  );
-}
+import { asset } from "@/lib/site";
 
-export function Logo() {
+/** Logotipo oficial da Gravon Company (PNG transparente em /public/brand). */
+export function Logo({ size = "md" }: { size?: "md" | "lg" }) {
+  const h = size === "lg" ? "h-11" : "h-8 sm:h-9 lg:h-10";
   return (
-    <span className="flex items-center gap-2.5">
-      <LogoMark />
-      <span className="font-display text-[17px] font-semibold tracking-tight">
-        Gravon<span className="font-light text-mist-400"> Company</span>
-      </span>
-    </span>
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src={asset("/brand/gravon-logo.png")}
+      alt="Gravon Company"
+      width={472}
+      height={110}
+      decoding="async"
+      className={`${h} w-auto select-none`}
+    />
   );
 }

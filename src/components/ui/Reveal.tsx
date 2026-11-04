@@ -1,26 +1,37 @@
 "use client";
 
-import { motion } from "motion/react";
+import { useEffect, useRef, useState, type ElementType } from "react";
 
-type Props = {
-  children: React.ReactNode;
-  delay?: number;
-  y?: number;
-  className?: string;
-  as?: "div" | "li" | "article";
-};
+type Props = { children: React.ReactNode; delay?: number; className?: string; as?: ElementType };
 
-export function Reveal({ children, delay = 0, y = 24, className, as = "div" }: Props) {
-  const Comp = motion[as];
+/** Entrada discreta ao rolar (IntersectionObserver + CSS); respeita prefers-reduced-motion. */
+export function Reveal({ children, delay = 0, className = "", as: Tag = "div" }: Props) {
+  const ref = useRef<HTMLElement | null>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    if (!("IntersectionObserver" in window)) {
+      setVisible(true);
+      return;
+    }
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          io.disconnect();
+        }
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -40px 0px" },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
   return (
-    <Comp
-      className={className}
-      initial={{ opacity: 0, y }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] }}
-    >
+    <Tag ref={ref} className={`reveal ${visible ? "is-visible" : ""} ${className}`} style={{ transitionDelay: `${delay}ms` }}>
       {children}
-    </Comp>
+    </Tag>
   );
 }
