@@ -42,8 +42,8 @@ export function Portal() {
           </div>
         </div>
 
-        <Reveal delay={120} className="relative mx-auto mt-14 max-w-6xl">
-          <div className="pointer-events-none absolute -inset-x-6 -bottom-8 top-8 rounded-[36px] bg-gold-300/30 blur-3xl" aria-hidden />
+        <Reveal delay={120} className="relative mt-14">
+          <div className="pointer-events-none absolute -inset-x-6 -bottom-8 top-8 rounded-[36px] bg-gold-300/25 blur-3xl" aria-hidden />
           <div className="relative"><PortalShowcase /></div>
         </Reveal>
 

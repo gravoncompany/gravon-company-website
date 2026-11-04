@@ -62,7 +62,7 @@ Derivada do código da landing page do Pipeflow (`gravoncompany/pipeflow-landing
 3. **Soluções** (areia) — prévias de Google Ads (busca com resultado Patrocinado), Meta Ads (anúncio no feed do Instagram) e landing page em celular, todas com a mesma empresa de exemplo fictícia (`src/content/example.ts`), seguidas de Automação, Dados e CRM com IA.
 4. **Jornada** (branco) — "Gerar leads é apenas o começo." com funil escalonado de 7 etapas.
 5. **Pipeflow CRM** (escuro) — abas com 3 capturas reais (Pipeline, Ficha do lead, Gravon IA) e recursos.
-6. **Portal Gravon** (areia) — captura real do dashboard: recorte largo no desktop, cartões de indicadores empilhados no celular e captura inteira ao ampliar (`public/images/portal`, configurado em `src/content/media.ts`).
+6. **Portal Gravon** (areia) — "Dashboard do Portal" (dados de demonstração substituídos na própria imagem) e "Próximos passos", lado a lado no desktop e empilhados no celular, com versão própria para celular e ampliação ao clicar. Arquivos em `public/images/portal/` (`portal-dashboard-demo`, `portal-dashboard-demo-mobile`, `portal-proximos-passos`, `portal-proximos-passos-mobile`), configurados em `src/content/media.ts`.
 7. **Metodologia CMC** (escuro) — 4 etapas em abas com avanço automático e painel de detalhes.
 8. **Projetos e cases** (branco) — filtros e espaços reservados até haver cases autorizados.
 9. **Chamada comercial** (dourado) — CTA + formulário.

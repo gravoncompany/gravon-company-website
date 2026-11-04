@@ -41,18 +41,26 @@ export const pipeflowScreens: { id: string; label: string; screen: Screen }[] = 
 ];
 
 /**
- * Captura real do Portal Gravon (Dashboard · Meta Ads · últimos 30 dias).
- * - `full`: captura inteira (abre ampliada)
- * - `desktop`: recorte do cabeçalho, filtros e resumo executivo
- * - `mobile`: cartões de indicadores recortados um a um para leitura no celular
- * Para trocar: substitua os arquivos em /public/images/portal mantendo os nomes, ou ajuste aqui.
+ * Capturas do Portal Gravon exibidas na seção Portal.
+ * - Dashboard: valores substituídos por dados de demonstração na própria imagem.
+ * - Próximos passos: área "Meu projeto" (objetivos, progresso e entregas), sem nome do cliente.
+ * `mobile` é usado no celular; `desktop` no computador e na ampliação.
  */
-export const portalScreens = {
-  full: { src: "/images/portal/dashboard-completo.webp", width: 2000, height: 1143, title: "Portal Gravon · Dashboard", alt: "Dashboard do Portal Gravon com período, filtros por plataforma, resumo executivo e gráfico de evolução dos resultados" },
-  desktop: { src: "/images/portal/dashboard-resumo.webp", width: 1690, height: 640, title: "Portal Gravon · Dashboard", alt: "Portal Gravon: dashboard de Marketing e vendas com filtros de período e resumo executivo com investimento total, resultados gerados, custo por resultado e conversões comerciais" },
-  mobile: [
-    { src: "/images/portal/kpi-investimento.webp", width: 408, height: 204, title: "Investimento total", alt: "Cartão Investimento total do Portal Gravon" },
-    { src: "/images/portal/kpi-resultados.webp", width: 408, height: 204, title: "Resultados gerados", alt: "Cartão Resultados gerados do Portal Gravon" },
-    { src: "/images/portal/kpi-custo.webp", width: 408, height: 204, title: "Custo por resultado", alt: "Cartão Custo por resultado do Portal Gravon" },
-  ],
-} satisfies { full: Screen; desktop: Screen; mobile: Screen[] };
+export type PortalShot = { id: string; heading: string; caption: string; desktop: Screen; mobile: Screen };
+
+export const portalShots: PortalShot[] = [
+  {
+    id: "dashboard",
+    heading: "Dashboard do Portal",
+    caption: "Dados de demonstração",
+    desktop: { src: "/images/portal/portal-dashboard-demo.webp", width: 880, height: 742, title: "Dashboard do Portal", alt: "Dashboard do Portal Gravon com dados de demonstração: filtros por plataforma e período e resumo executivo com investimento total, resultados gerados, custo por resultado e conversões comerciais" },
+    mobile: { src: "/images/portal/portal-dashboard-demo-mobile.webp", width: 440, height: 1110, title: "Dashboard do Portal", alt: "Dashboard do Portal Gravon com dados de demonstração em formato de celular: investimento total, resultados gerados, custo por resultado e conversões comerciais" },
+  },
+  {
+    id: "proximos-passos",
+    heading: "Próximos passos",
+    caption: "Progresso e entregas do projeto",
+    desktop: { src: "/images/portal/portal-proximos-passos.webp", width: 1247, height: 920, title: "Próximos passos", alt: "Área de próximos passos do Portal Gravon com objetivos de cada mês, últimas atualizações, progresso real das entregas e lista de entregas com status" },
+    mobile: { src: "/images/portal/portal-proximos-passos-mobile.png", width: 724, height: 1452, title: "Próximos passos", alt: "Próximos passos no Portal Gravon em formato de celular: progresso real das entregas e lista de entregas do mês 1 com status" },
+  },
+];
