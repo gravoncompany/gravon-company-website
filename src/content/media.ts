@@ -73,3 +73,22 @@ export const gravonIa = {
   robotSmall: { src: "/images/gravon-ia/hero-mascot-160.webp", width: 160, height: 160 },
   card: { src: "/images/gravon-ia/gravon-ia-card.webp", width: 400, height: 600, alt: "Gravon IA · Atendimento inteligente · Conecta marketing, vendas e resultados" },
 };
+
+/**
+ * Artes finais da Aurora Estética (clínica fictícia do projeto demonstrativo).
+ * `carousel[0]` (01/02 · Limpeza de pele profunda) ainda não foi enviado: enquanto `src` estiver vazio,
+ * o site mostra a capa ilustrada provisória no lugar.
+ */
+export type Art = { src?: string; width: number; height: number; alt: string };
+export const auroraArts: { carousel: [Art, Art]; reels: Art; stories: [Art, Art, Art] } = {
+  carousel: [
+    { src: undefined, width: 1254, height: 1254, alt: "Carrossel 01/02: Limpeza de pele profunda" },
+    { src: "/images/aurora/carrossel-02.webp", width: 1254, height: 1254, alt: "Carrossel 02/02 da Aurora Estética: Como é feita — 1. Avaliação da pele, 2. Higienização e extração, 3. Hidratação e proteção" },
+  ],
+  reels: { src: "/images/aurora/reels-capa.webp", width: 941, height: 1672, alt: "Capa de Reels da Aurora Estética: Limpeza de pele dói? A especialista responde" },
+  stories: [
+    { src: "/images/aurora/stories-01.webp", width: 941, height: 1672, alt: "Story 01/03 da Aurora Estética: Um momento para cuidar da sua pele" },
+    { src: "/images/aurora/stories-02.webp", width: 941, height: 1672, alt: "Story 02/03 da Aurora Estética: Tudo começa com uma avaliação. Um cuidado pensado para sua pele" },
+    { src: "/images/aurora/stories-03.webp", width: 941, height: 1672, alt: "Story 03/03 da Aurora Estética: Agende sua avaliação. Fale com a Aurora" },
+  ],
+};
