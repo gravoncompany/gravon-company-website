@@ -67,6 +67,12 @@ Derivada do código da landing page do Pipeflow (`gravoncompany/pipeflow-landing
 8. **Projetos e cases** (branco) — filtros e espaços reservados até haver cases autorizados.
 9. **Chamada comercial** (dourado) — CTA + formulário.
 
+## Marca
+
+- Logotipo oficial: `public/brand/gravon-logo.png` (transparente), usado no cabeçalho e no rodapé.
+- Favicon/ícones: `src/app/icon.png`, `src/app/apple-icon.png` e `src/app/favicon.ico`, gerados a partir do símbolo "G".
+- Se houver versão vetorial (SVG) do logotipo, substitua o PNG para nitidez máxima em telas de alta densidade.
+
 ## Conteúdo: regras
 
 - Nada de clientes, números, avaliações ou contatos inventados. Tudo que é dado real entra por

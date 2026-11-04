@@ -50,6 +50,7 @@ const jsonLd = {
       name: site.name,
       url: site.url,
       slogan: site.slogan,
+      logo: `${site.url}/brand/gravon-logo.png`,
       description: site.description,
       ...(site.contact.instagram ? { sameAs: [site.contact.instagram] } : {}),
       ...(site.contact.email ? { email: site.contact.email } : {}),

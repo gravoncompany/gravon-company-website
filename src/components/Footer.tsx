@@ -12,8 +12,8 @@ export function Footer() {
       <Container>
         <div className="grid gap-10 md:grid-cols-[1.5fr_1fr_1fr]">
           <div>
-            <Logo />
-            <p className="mt-4 font-display text-lg font-bold text-white">{site.slogan}</p>
+            <Logo size="lg" />
+            <p className="mt-5 font-display text-lg font-bold text-white">{site.slogan}</p>
             <p className="mt-2 max-w-sm text-sm leading-relaxed">
               Marketing, tecnologia e inteligência comercial integrados para transformar oportunidades em resultados.
             </p>
