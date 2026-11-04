@@ -76,13 +76,12 @@ export const gravonIa = {
 
 /**
  * Artes finais da Aurora Estética (clínica fictícia do projeto demonstrativo).
- * `carousel[0]` (01/02 · Limpeza de pele profunda) ainda não foi enviado: enquanto `src` estiver vazio,
- * o site mostra a capa ilustrada provisória no lugar.
+ * Se alguma arte ficar sem `src`, o carrossel mostra a capa ilustrada provisória no lugar.
  */
 export type Art = { src?: string; width: number; height: number; alt: string };
 export const auroraArts: { carousel: [Art, Art]; reels: Art; stories: [Art, Art, Art] } = {
   carousel: [
-    { src: undefined, width: 1254, height: 1254, alt: "Carrossel 01/02: Limpeza de pele profunda" },
+    { src: "/images/aurora/carrossel-01.webp", width: 1254, height: 1254, alt: "Carrossel 01/02 da Aurora Estética: Limpeza de pele profunda — Como funciona, passo a passo" },
     { src: "/images/aurora/carrossel-02.webp", width: 1254, height: 1254, alt: "Carrossel 02/02 da Aurora Estética: Como é feita — 1. Avaliação da pele, 2. Higienização e extração, 3. Hidratação e proteção" },
   ],
   reels: { src: "/images/aurora/reels-capa.webp", width: 941, height: 1672, alt: "Capa de Reels da Aurora Estética: Limpeza de pele dói? A especialista responde" },
