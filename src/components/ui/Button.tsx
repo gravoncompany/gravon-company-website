@@ -1,48 +1,32 @@
-import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 
-type Variant = "primary" | "ghost";
+type Variant = "primary" | "ghost-dark" | "dark" | "secondary";
 
-const base =
-  "group inline-flex items-center justify-center gap-2 rounded-full px-6 py-3.5 text-sm font-medium transition duration-300 will-change-transform focus-visible:outline-offset-4 md:text-[15px]";
-
-const variants: Record<Variant, string> = {
-  primary:
-    "bg-gradient-to-b from-gold-300 to-gold-500 text-ink-950 shadow-[0_0_0_1px_rgba(236,210,154,.5),0_10px_40px_-10px_rgba(217,180,110,.6)] hover:-translate-y-0.5 hover:shadow-[0_0_0_1px_rgba(246,230,191,.8),0_16px_50px_-10px_rgba(217,180,110,.8)]",
-  ghost:
-    "border border-white/12 bg-white/[0.03] text-mist-100 hover:-translate-y-0.5 hover:border-gold-400/50 hover:bg-white/[0.06]",
+const styles: Record<Variant, string> = {
+  primary: "bg-gold-400 text-ink-950 shadow-glow hover:bg-gold-300 focus-visible:outline-gold-200",
+  "ghost-dark": "bg-white/5 text-white ring-1 ring-white/15 hover:bg-white/10 focus-visible:outline-white",
+  dark: "bg-ink-900 text-white hover:bg-ink-700 focus-visible:outline-ink-900",
+  secondary: "bg-white text-ink-900 ring-1 ring-ink-900/10 hover:ring-ink-900/25 focus-visible:outline-gold-500",
 };
 
 type Props = {
   href: string;
   children: React.ReactNode;
   variant?: Variant;
+  arrow?: boolean;
   external?: boolean;
   className?: string;
-  arrow?: boolean;
 };
 
-export function Button({ href, children, variant = "primary", external, className = "", arrow = true }: Props) {
-  const cls = `${base} ${variants[variant]} ${className}`;
-  const content = (
-    <>
-      {children}
-      {arrow ? (
-        <svg aria-hidden viewBox="0 0 20 20" className="size-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" strokeWidth="1.8">
-          <path d="M4 10h12m-5-5 5 5-5 5" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-      ) : null}
-    </>
-  );
-  if (external) {
-    return (
-      <a href={href} className={cls} target="_blank" rel="noopener noreferrer">
-        {content}
-      </a>
-    );
-  }
+export function Button({ href, children, variant = "primary", arrow = false, external = false, className = "" }: Props) {
   return (
-    <Link href={href} className={cls}>
-      {content}
-    </Link>
+    <a
+      href={href}
+      {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+      className={`group inline-flex min-h-[48px] items-center justify-center gap-2 rounded-xl px-6 py-3 text-[15px] font-semibold transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 active:scale-[.98] ${styles[variant]} ${className}`}
+    >
+      {children}
+      {arrow ? <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden /> : null}
+    </a>
   );
 }

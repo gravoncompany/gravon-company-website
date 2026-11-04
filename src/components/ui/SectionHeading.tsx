@@ -5,29 +5,28 @@ type Props = {
   title: React.ReactNode;
   description?: React.ReactNode;
   align?: "left" | "center";
+  tone?: "light" | "dark";
   id?: string;
 };
 
-export function SectionHeading({ eyebrow, title, description, align = "left", id }: Props) {
-  const centered = align === "center";
+export function SectionHeading({ eyebrow, title, description, align = "center", tone = "light", id }: Props) {
+  const dark = tone === "dark";
   return (
-    <div className={centered ? "mx-auto max-w-3xl text-center" : "max-w-3xl"}>
-      <Reveal>
-        <p className={`flex items-center gap-3 font-display text-xs font-medium uppercase tracking-[0.32em] text-gold-400 ${centered ? "justify-center" : ""}`}>
-          <span aria-hidden className="h-px w-8 bg-gold-500/70" />
-          {eyebrow}
-        </p>
-      </Reveal>
-      <Reveal delay={0.08}>
-        <h2 id={id} className="mt-5 font-display text-3xl font-semibold leading-[1.1] tracking-tight text-balance sm:text-4xl md:text-5xl">
-          {title}
-        </h2>
-      </Reveal>
+    <Reveal className={`${align === "center" ? "mx-auto text-center" : ""} max-w-3xl`}>
+      <span
+        className={`inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-[.14em] ${
+          dark ? "bg-white/5 text-gold-300 ring-1 ring-white/10" : "bg-gold-50 text-gold-700 ring-1 ring-gold-200/70"
+        }`}
+      >
+        <span className="h-1.5 w-1.5 rounded-full bg-current" aria-hidden />
+        {eyebrow}
+      </span>
+      <h2 id={id} className={`mt-5 text-3xl font-bold leading-[1.15] text-balance sm:text-4xl lg:text-[44px] ${dark ? "text-white" : "text-ink-900"}`}>
+        {title}
+      </h2>
       {description ? (
-        <Reveal delay={0.16}>
-          <p className="mt-5 text-base leading-relaxed text-mist-400 text-pretty md:text-lg">{description}</p>
-        </Reveal>
+        <p className={`mt-5 text-base leading-relaxed text-pretty sm:text-lg ${dark ? "text-zinc-300" : "text-zinc-600"}`}>{description}</p>
       ) : null}
-    </div>
+    </Reveal>
   );
 }

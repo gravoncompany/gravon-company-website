@@ -1,6 +1,7 @@
 import { Hero } from "@/components/sections/Hero";
-import { Differential } from "@/components/sections/Differential";
+import { Marquee } from "@/components/sections/Marquee";
 import { Solutions } from "@/components/sections/Solutions";
+import { Journey } from "@/components/sections/Journey";
 import { Pipeflow } from "@/components/sections/Pipeflow";
 import { Portal } from "@/components/sections/Portal";
 import { Methodology } from "@/components/sections/Methodology";
@@ -11,8 +12,9 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <Differential />
+      <Marquee />
       <Solutions />
+      <Journey />
       <Pipeflow />
       <Portal />
       <Methodology />

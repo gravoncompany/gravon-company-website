@@ -49,13 +49,19 @@ export const site = {
 } as const;
 
 export const nav = [
-  { href: "#diferencial", label: "Diferencial" },
   { href: "#solucoes", label: "Soluções" },
-  { href: "#pipeflow", label: "Pipeflow" },
+  { href: "#jornada", label: "Jornada" },
+  { href: "#pipeflow", label: "Pipeflow CRM" },
   { href: "#portal", label: "Portal" },
   { href: "#metodologia", label: "Metodologia" },
   { href: "#projetos", label: "Projetos" },
 ] as const;
+
+/** Prefixa arquivos de /public com o basePath (necessário em hospedagem em subcaminho). */
+export function asset(path: string) {
+  const base = (process.env.NEXT_PUBLIC_BASE_PATH ?? "").replace(/\/$/, "");
+  return `${base}${path.startsWith("/") ? path : `/${path}`}`;
+}
 
 export function whatsappLink(message = "Olá, Gravon Company! Quero conversar com um especialista.") {
   if (!site.contact.whatsapp) return undefined;

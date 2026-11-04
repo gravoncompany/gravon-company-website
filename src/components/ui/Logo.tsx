@@ -1,26 +1,27 @@
-export function LogoMark({ className = "size-8" }: { className?: string }) {
+/** Marca provisória (substituir pelo logotipo oficial em SVG). */
+export function LogoMark({ className = "h-9 w-9" }: { className?: string }) {
   return (
-    <svg viewBox="0 0 64 64" className={className} aria-hidden>
+    <svg viewBox="0 0 40 40" className={className} aria-hidden>
       <defs>
-        <linearGradient id="logo-g" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stopColor="#f6e6bf" />
-          <stop offset=".5" stopColor="#d9b46e" />
-          <stop offset="1" stopColor="#9c773a" />
+        <linearGradient id="gm" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stopColor="#f5e3b3" />
+          <stop offset="1" stopColor="#c99a3a" />
         </linearGradient>
       </defs>
-      <ellipse cx="32" cy="32" rx="27" ry="11" fill="none" stroke="url(#logo-g)" strokeWidth="2.4" transform="rotate(-28 32 32)" />
-      <circle cx="32" cy="32" r="11" fill="url(#logo-g)" />
-      <circle cx="54" cy="20.5" r="2.6" fill="#f6e6bf" />
+      <rect width="40" height="40" rx="11" fill="#131316" />
+      <rect x=".5" y=".5" width="39" height="39" rx="10.5" fill="none" stroke="rgba(230,199,126,.35)" />
+      <path d="M27.5 14.2A9 9 0 1 0 29 22h-8.5" fill="none" stroke="url(#gm)" strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round" />
+      <circle cx="29" cy="11" r="2.1" fill="#e6c77e" />
     </svg>
   );
 }
 
-export function Logo() {
+export function Logo({ tone = "dark" }: { tone?: "light" | "dark" }) {
   return (
-    <span className="flex items-center gap-2.5">
+    <span className="inline-flex items-center gap-2.5">
       <LogoMark />
-      <span className="font-display text-[17px] font-semibold tracking-tight">
-        Gravon<span className="font-light text-mist-400"> Company</span>
+      <span className={`font-display text-lg font-extrabold tracking-tight ${tone === "dark" ? "text-white" : "text-ink-900"}`}>
+        Gravon <span className="font-semibold text-gold-400">Company</span>
       </span>
     </span>
   );

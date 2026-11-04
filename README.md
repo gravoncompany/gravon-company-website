@@ -9,8 +9,8 @@ Website institucional independente da Gravon Company. Não depende nem altera o 
 
 - **Next.js 16** (App Router, páginas estáticas) + **React 19** + **TypeScript**
 - **Tailwind CSS 4** (tokens de marca em `src/app/globals.css`)
-- **Motion** (`motion/react`) para animações de entrada/interação; órbitas e brilhos em CSS puro
-- Fontes via `next/font` (Sora + Inter, auto-hospedadas no build)
+- Animações em CSS puro (Reveal por IntersectionObserver, gradiente animado, marquee) e ícones **lucide-react**
+- Fontes via `next/font` (Plus Jakarta Sans 600–800 nas headlines + Inter 400–600, auto-hospedadas no build)
 - SEO: metadados, Open Graph, JSON-LD (Organization/WebSite/ProfessionalService), `sitemap.xml`, `robots.txt`
 - Acessibilidade: HTML semântico, skip link, foco visível, `aria` em tabs/menus/formulário, `prefers-reduced-motion`
 
@@ -23,7 +23,7 @@ npm run dev                  # http://localhost:3000
 ```
 
 Produção local: `npm run build && npm start`.
-Versão estática (pasta `out/`, para hospedagem estática/preview): `STATIC_EXPORT=1 npm run build`.
+Versão estática (pasta `out/`, para hospedagem estática/preview): `STATIC_EXPORT=1 npm run build` (com `NEXT_PUBLIC_BASE_PATH=/subcaminho` para hospedar fora da raiz).
 
 ## Estrutura
 
@@ -40,16 +40,32 @@ src/
   lib/site.ts     dados da marca + leitura das variáveis de ambiente
 ```
 
+## Linguagem visual (branch `redesign`)
+
+Derivada do código da landing page do Pipeflow (`gravoncompany/pipeflow-landing-page`), com a paleta preto + dourado da Gravon:
+
+| Elemento | Pipeflow | Gravon |
+|---|---|---|
+| Headlines | Plus Jakarta Sans 800, `leading-[1.08]`, `tracking-tight`, hero até 64px | Mesma família/peso; hero até 80px |
+| Títulos de seção | `text-3xl sm:text-4xl lg:text-[44px]` bold | Igual |
+| Eyebrow | Pílula `rounded-full` com ponto, `tracking-[.14em]` | Igual, em dourado |
+| Seções | `py-20 lg:py-28`, alternando escuro/claro | Preto `#060607` / areia `#FAF8F3` / branco |
+| Botões | `rounded-xl`, `min-h-[48px]`, glow azul | Mesmo formato, dourado com glow dourado |
+| Cards | `rounded-2xl`, ring + `shadow-card`, `hover:-translate-y-1`, ícone que preenche | Igual, com ícone dourado |
+| Capturas | `BrowserFrame` + ampliação ao clicar | Igual (capturas reais do Pipeflow, dados demonstrativos) |
+| Animações | Reveal 18px/0.7s, gradiente `flow`, `float` | Iguais + marquee de frentes de atuação |
+
 ## Seções da página
 
-1. **Hero** — headline, subtítulo, CTAs e sistema orbital animado (Google Ads, Meta Ads, CRM, IA, Dados, WhatsApp).
-2. **O diferencial Gravon** — jornada Google/Meta Ads → Captação → CRM → Qualificação → Atendimento → Conversão → Análise.
-3. **Nossas soluções** — 6 cards (Google Ads, Meta Ads, Sites/LPs, CRM com IA, Automação, Dados).
-4. **Pipeflow CRM** — recursos e representação ilustrativa da interface (substituível por captura real).
-5. **Portal Gravon** — recursos e dashboard ilustrativo (valores ocultos; substituível por captura real).
-6. **Metodologia CMC** — mostrador interativo (clique/teclado, avanço automático) com as 4 etapas.
-7. **Projetos e cases** — filtros por categoria e espaços reservados até haver cases autorizados.
-8. **Chamada comercial** — CTA para WhatsApp + formulário de contato.
+1. **Hero** (escuro) — headline de 80px, CTAs e composição: captura real do Pipeflow cercada por cartões de Google Ads, Meta Ads, Gravon IA e Portal.
+2. **Faixa de frentes** — marquee com as áreas de atuação.
+3. **Soluções** (areia) — bento com Google Ads, Meta Ads, Sites, Automação, Dados e card largo de CRM com IA.
+4. **Jornada** (branco) — "Gerar leads é apenas o começo." com funil escalonado de 7 etapas.
+5. **Pipeflow CRM** (escuro) — abas com 3 capturas reais (Pipeline, Ficha do lead, Gravon IA) e recursos.
+6. **Portal Gravon** (areia) — recursos + mockup claro do dashboard (substituível por captura real).
+7. **Metodologia CMC** (escuro) — 4 etapas em abas com avanço automático e painel de detalhes.
+8. **Projetos e cases** (branco) — filtros e espaços reservados até haver cases autorizados.
+9. **Chamada comercial** (dourado) — CTA + formulário.
 
 ## Conteúdo: regras
 
@@ -82,6 +98,7 @@ Sem WhatsApp nem endpoint, o formulário informa que está em modo demonstraçã
 
 ## Demonstração online
 
-O workflow `.github/workflows/demo-pages.yml` publica uma versão estática a cada push na `main` em
-`https://gravoncompany.github.io/gravon-company-website/` (GitHub Pages, com `noindex`).
+O workflow `.github/workflows/demo-pages.yml` publica as duas versões (GitHub Pages, com `noindex`):
+- `https://gravoncompany.github.io/gravon-company-website/` — branch `main`
+- `https://gravoncompany.github.io/gravon-company-website/redesign/` — branch `redesign`
 Se o primeiro deploy falhar por Pages desativado: **Settings → Pages → Source: GitHub Actions** e rode o workflow novamente.

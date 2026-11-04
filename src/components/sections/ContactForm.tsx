@@ -28,7 +28,7 @@ function readAttribution() {
 }
 
 const field =
-  "w-full rounded-xl border border-white/10 bg-ink-950/60 px-4 py-3 text-[15px] text-mist-100 placeholder:text-mist-500 transition focus:border-gold-400/70 focus:bg-ink-950 focus:outline-none";
+  "w-full rounded-xl bg-sand-50 px-4 py-3 text-[15px] text-ink-900 ring-1 ring-ink-900/10 placeholder:text-zinc-400 transition focus:bg-white focus:outline-none focus:ring-2 focus:ring-gold-500";
 
 export function ContactForm() {
   const [status, setStatus] = useState<Status>({ kind: "idle" });
@@ -88,36 +88,36 @@ export function ContactForm() {
   const busy = status.kind === "sending";
 
   return (
-    <form id="formulario" onSubmit={onSubmit} className="glass rounded-3xl p-6 shadow-2xl md:p-9" aria-describedby="form-status" noValidate={false}>
-      <h3 className="font-display text-xl font-medium">Fale com um especialista</h3>
-      <p className="mt-1 text-sm text-mist-500">Campos com * são obrigatórios.</p>
+    <form id="formulario" onSubmit={onSubmit} className="rounded-2xl bg-white p-6 shadow-card ring-1 ring-ink-900/5 sm:p-8" aria-describedby="form-status" noValidate={false}>
+      <h3 className="text-xl font-bold text-ink-900">Fale com um especialista</h3>
+      <p className="mt-1 text-sm text-zinc-500">Campos com * são obrigatórios.</p>
 
       <div className="mt-7 grid gap-4 sm:grid-cols-2">
         <label className="block">
-          <span className="mb-1.5 block text-sm text-mist-300">Nome *</span>
+          <span className="mb-1.5 block text-sm text-zinc-700">Nome *</span>
           <input name="nome" required autoComplete="name" maxLength={120} className={field} />
         </label>
         <label className="block">
-          <span className="mb-1.5 block text-sm text-mist-300">Empresa</span>
+          <span className="mb-1.5 block text-sm text-zinc-700">Empresa</span>
           <input name="empresa" autoComplete="organization" maxLength={120} className={field} />
         </label>
         <label className="block">
-          <span className="mb-1.5 block text-sm text-mist-300">WhatsApp *</span>
+          <span className="mb-1.5 block text-sm text-zinc-700">WhatsApp *</span>
           <input name="telefone" required type="tel" inputMode="tel" autoComplete="tel" pattern="[\d\s\(\)\+\-]{10,20}" title="Informe DDD e número" placeholder="(DDD) 00000-0000" className={field} />
         </label>
         <label className="block">
-          <span className="mb-1.5 block text-sm text-mist-300">E-mail</span>
+          <span className="mb-1.5 block text-sm text-zinc-700">E-mail</span>
           <input name="email" type="email" autoComplete="email" maxLength={160} className={field} />
         </label>
         <label className="block sm:col-span-2">
-          <span className="mb-1.5 block text-sm text-mist-300">Interesse</span>
+          <span className="mb-1.5 block text-sm text-zinc-700">Interesse</span>
           <select name="interesse" defaultValue="" className={`${field} appearance-none`}>
             <option value="" disabled>Selecione uma opção</option>
             {interests.map((i) => <option key={i} value={i}>{i}</option>)}
           </select>
         </label>
         <label className="block sm:col-span-2">
-          <span className="mb-1.5 block text-sm text-mist-300">Mensagem</span>
+          <span className="mb-1.5 block text-sm text-zinc-700">Mensagem</span>
           <textarea name="mensagem" rows={4} maxLength={2000} className={`${field} resize-y`} placeholder="Conte brevemente sobre sua empresa e seu objetivo." />
         </label>
         {/* Honeypot anti-spam */}
@@ -126,20 +126,20 @@ export function ContactForm() {
         </label>
       </div>
 
-      <label className="mt-5 flex items-start gap-3 text-sm text-mist-400">
-        <input type="checkbox" name="consentimento" required className="mt-1 size-4 accent-[#d9b46e]" />
+      <label className="mt-5 flex items-start gap-3 text-sm text-zinc-600">
+        <input type="checkbox" name="consentimento" required className="mt-1 size-4 accent-[#c99a3a]" />
         <span>Autorizo a Gravon Company a entrar em contato comigo sobre esta solicitação. *</span>
       </label>
 
       <button
         type="submit"
         disabled={busy}
-        className="mt-7 w-full rounded-full bg-gradient-to-b from-gold-300 to-gold-500 px-6 py-4 font-medium text-ink-950 transition hover:brightness-110 disabled:opacity-60"
+        className="mt-7 min-h-[48px] w-full rounded-xl bg-ink-900 px-6 py-3 text-[15px] font-semibold text-white transition hover:bg-ink-700 active:scale-[.98] disabled:opacity-60"
       >
         {busy ? "Enviando…" : "Enviar mensagem"}
       </button>
 
-      <p id="form-status" role="status" aria-live="polite" className={`mt-4 min-h-5 text-sm ${status.kind === "error" ? "text-red-300" : status.kind === "success" ? "text-emerald-300" : "text-gold-300"}`}>
+      <p id="form-status" role="status" aria-live="polite" className={`mt-4 min-h-5 text-sm ${status.kind === "error" ? "text-red-600" : status.kind === "success" ? "text-emerald-700" : "text-gold-700"}`}>
         {status.message}
       </p>
     </form>
