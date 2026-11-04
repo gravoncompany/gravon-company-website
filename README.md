@@ -79,3 +79,9 @@ Sem WhatsApp nem endpoint, o formulário informa que está em modo demonstraçã
 3. Configurar as variáveis de ambiente com dados reais.
 4. Somente após aprovação: definir `NEXT_PUBLIC_ALLOW_INDEXING=true`, apontar o domínio e configurar redirecionamentos
    das URLs antigas (para não perder posicionamento) e enviar o sitemap no Google Search Console.
+
+## Demonstração online
+
+O workflow `.github/workflows/demo-pages.yml` publica uma versão estática a cada push na `main` em
+`https://gravoncompany.github.io/gravon-company-website/` (GitHub Pages, com `noindex`).
+Se o primeiro deploy falhar por Pages desativado: **Settings → Pages → Source: GitHub Actions** e rode o workflow novamente.
