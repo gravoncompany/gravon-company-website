@@ -65,21 +65,11 @@ export const portalShots: PortalShot[] = [
   },
 ];
 
-/**
- * Gravon IA (bloco "CRM com inteligência artificial" em Nossas soluções).
- * PENDENTE: imagem do trecho "inteligência artificial e tecnologia" e o robô animado da primeira seção de
- * https://ia.gravoncompany.com/ (não acessível no ambiente de desenvolvimento). Ao receber:
- *   - image: coloque em /public/images/gravon-ia/ e preencha abaixo;
- *   - robot: arquivo da animação original (.webm/.mp4 com transparência, .gif, .webp animado ou .svg animado)
- *     e, se houver, uma versão estática (robotStatic) para quem prefere movimento reduzido.
- * Enquanto `image` estiver vazio, o bloco usa a captura real do Chat Gravon IA no Pipeflow.
- */
-export const gravonIa: {
-  image?: Screen;
-  robot?: { src: string; width: number; height: number; alt: string };
-  robotStatic?: { src: string; width: number; height: number };
-} = {
-  image: undefined,
-  robot: undefined,
-  robotStatic: undefined,
+/** Gravon IA: hub tecnológico (bloco "CRM com inteligência artificial"), mascote e card do chat. */
+export const gravonIa = {
+  image: { src: "/images/gravon-ia/hub-tecnologico.webp", width: 500, height: 500, title: "Hub tecnológico Gravon IA", alt: "Hub tecnológico da Gravon IA: o símbolo da Gravon no centro conectado a ferramentas de inteligência artificial, Google e Meta" },
+  /** hero-mascot.webp é estático: o site aplica um movimento sutil (parado para quem prefere movimento reduzido). */
+  robot: { src: "/images/gravon-ia/hero-mascot.webp", width: 512, height: 512, alt: "Robô da Gravon IA acenando e segurando um celular" },
+  robotSmall: { src: "/images/gravon-ia/hero-mascot-160.webp", width: 160, height: 160 },
+  card: { src: "/images/gravon-ia/gravon-ia-card.webp", width: 400, height: 600, alt: "Gravon IA · Atendimento inteligente · Conecta marketing, vendas e resultados" },
 };

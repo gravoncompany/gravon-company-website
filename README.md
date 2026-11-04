@@ -64,7 +64,7 @@ Derivada do código da landing page do Pipeflow (`gravoncompany/pipeflow-landing
 5. **Pipeflow CRM** (escuro) — abas com 3 capturas reais (Pipeline, Ficha do lead, Gravon IA) e recursos.
 6. **Portal Gravon** (areia) — "Dashboard do Portal" (dados de demonstração substituídos na própria imagem) e "Próximos passos", lado a lado no desktop e empilhados no celular, com versão própria para celular e ampliação ao clicar. Arquivos em `public/images/portal/` (`portal-dashboard-demo`, `portal-dashboard-demo-mobile`, `portal-proximos-passos`, `portal-proximos-passos-mobile`), configurados em `src/content/media.ts`.
 7. **Metodologia CMC** (preto) — funil com volume (A·Q·C·R); cada camada é um botão (teclado: setas, Home/End). Abre em Atração; explicação ao lado no desktop e logo abaixo da etapa ativa no celular.
-8. **Nosso processo** (universo) — linha do tempo vertical que avança com a rolagem (6 etapas baseadas nos objetivos e entregas do Portal; conferir com a seção de mesmo nome da Gravon IA).
+8. **Nosso processo** (universo) — linha do tempo vertical que avança com a rolagem: Tráfego pago & Social Media → CRM com inteligência artificial → Gravon IA conecta a operação → Visibilidade no Portal Gravon.
 9. **Projeto demonstrativo** (branco) — Aurora Estética e Mariana Souza (fictícias): carrossel de 2 telas, capa de Reels, 3 Stories, anúncio → WhatsApp e quadro animado do Pipeflow (Novo lead → Atendimento, resumo da Gravon IA, botão "Rever demonstração").
 10. **Chamada comercial** (dourado) — título e um único botão.
 
@@ -75,13 +75,14 @@ Faturamento mensal (5 faixas) → Nome, WhatsApp com DDD e Instagram (obrigatór
 (texto livre). Progresso, voltar sem perder respostas, confirmação no pop-up e nova tentativa em caso de erro.
 Configuração em `src/content/lead-form.ts`. Envio: `NEXT_PUBLIC_LEAD_ENDPOINT` → relay em `relay/` → Zapier.
 
-## Gravon IA (assets pendentes)
+## Gravon IA
 
-- **Imagem e robô animado** do bloco "CRM com inteligência artificial": preencher `gravonIa` em `src/content/media.ts`
-  (enquanto isso, o bloco usa a captura real do Chat Gravon IA e o símbolo da Gravon no lugar do robô).
-- **Chat flutuante**: definir `NEXT_PUBLIC_GRAVON_IA_CHAT_SCRIPT` (e `NEXT_PUBLIC_GRAVON_IA_CHAT_ID`, se o script exigir).
-  O componente `src/components/GravonIaChat.tsx` recolhe o chat enquanto o pop-up de captação está aberto
-  (`html[data-lead-modal-open]` + evento `gravon:lead-modal`).
+- **Assets** em `public/images/gravon-ia/`: `hero-mascot.webp` (robô; estático, com movimento sutil e parado em
+  movimento reduzido), `hub-tecnologico.webp` (bloco "CRM com inteligência artificial") e `gravon-ia-card.webp` (painel do chat).
+- **Chat flutuante** (`src/components/GravonIaChat.tsx`): botão circular no canto inferior direito com o mascote
+  (fundo amarelo no hover), painel na própria página com fechar (X/Esc), recolhido enquanto o pop-up de captação está aberto.
+  Atendimento por IA: definir `NEXT_PUBLIC_GRAVON_IA_CHAT_ENDPOINT` (POST `{ messages, page }` → `{ reply }`).
+  Sem o endpoint, o painel mostra só atalhos (especialista, soluções, projeto demonstrativo e WhatsApp, se configurado).
 
 ## Conteúdo: regras
 

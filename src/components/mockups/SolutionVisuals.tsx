@@ -1,37 +1,19 @@
 import { ArrowRight, CalendarClock, Sparkles, UserCheck, UserPlus } from "lucide-react";
 import { asset } from "@/lib/site";
-import { gravonIa, pipeflowScreens } from "@/content/media";
+import { gravonIa } from "@/content/media";
 
-/** CRM com IA: imagem da Gravon IA + robô animado original (quando fornecidos). */
+/** CRM com IA: hub tecnológico da Gravon IA + mascote com movimento sutil (parado em movimento reduzido). */
 export function GravonIaVisual() {
-  const img = gravonIa.image ?? pipeflowScreens[2].screen;
-  const robot = gravonIa.robot;
-  const isVideo = robot && /\.(webm|mp4)$/i.test(robot.src);
+  const { image, robot } = gravonIa;
   return (
-    <div className="relative pb-10 pr-6 sm:pb-12 sm:pr-10">
-      <div className="overflow-hidden rounded-xl ring-1 ring-white/15 shadow-glow">
+    <div className="relative mx-auto w-full max-w-[480px] pb-8">
+      <div className="pointer-events-none absolute inset-6 rounded-full bg-gold-500/15 blur-3xl" aria-hidden />
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src={asset(image.src)} alt={image.alt} width={image.width} height={image.height} loading="lazy" decoding="async" className="relative block h-auto w-[70%]" />
+      <div className="absolute bottom-0 right-0 w-[38%] max-w-[190px]">
+        <div className="pointer-events-none absolute inset-[18%] rounded-full bg-gold-400/30 blur-2xl" aria-hidden />
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={asset(img.src)} alt={img.alt} width={img.width} height={img.height} loading="lazy" className="block h-auto w-full" />
-      </div>
-      <div className="absolute -bottom-1 right-0 h-28 w-28 sm:h-36 sm:w-36" aria-hidden={!robot}>
-        <div className="absolute inset-3 rounded-full bg-gold-400/25 blur-2xl" aria-hidden />
-        {robot ? (
-          isVideo ? (
-            <video className="relative h-full w-full object-contain motion-reduce:hidden" src={asset(robot.src)} autoPlay loop muted playsInline aria-label={robot.alt} />
-          ) : (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img className="relative h-full w-full object-contain motion-reduce:hidden" src={asset(robot.src)} width={robot.width} height={robot.height} alt={robot.alt} />
-          )
-        ) : (
-          <span className="relative flex h-full w-full items-center justify-center rounded-full bg-ink-900 ring-1 ring-gold-400/50">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={asset("/apple-icon.png")} alt="" width={180} height={180} className="h-3/5 w-3/5 rounded-2xl object-contain" />
-          </span>
-        )}
-        {robot && gravonIa.robotStatic ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img className="relative hidden h-full w-full object-contain motion-reduce:block" src={asset(gravonIa.robotStatic.src)} width={gravonIa.robotStatic.width} height={gravonIa.robotStatic.height} alt={robot.alt} />
-        ) : null}
+        <img src={asset(robot.src)} alt={robot.alt} width={robot.width} height={robot.height} loading="lazy" decoding="async" className="relative block h-auto w-full animate-float drop-shadow-[0_14px_30px_rgba(0,0,0,.55)] motion-reduce:animate-none" />
       </div>
     </div>
   );

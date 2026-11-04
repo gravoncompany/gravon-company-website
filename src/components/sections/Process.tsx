@@ -5,17 +5,11 @@ import { Container } from "../ui/Container";
 import { SectionHeading } from "../ui/SectionHeading";
 import { Starfield } from "../ui/Starfield";
 
-/**
- * Sequência baseada nos objetivos mensais e entregas do Portal Gravon (Mês 1 Estruturação,
- * Mês 2 Aquisição, Mês 3 Consolidação). Conferir com a seção "Nosso processo" de ia.gravoncompany.com.
- */
 const steps = [
-  { title: "Diagnóstico inicial", text: "Análise do cenário atual de marketing e vendas para entender onde estão as oportunidades." },
-  { title: "Planejamento estratégico", text: "Definição de objetivos, metas, posicionamento e do plano dos próximos meses." },
-  { title: "Estruturação", text: "Contas de Google Ads e Meta Ads, rastreamento de conversões e eventos configurados." },
-  { title: "Criativos e campanhas no ar", text: "Produção dos primeiros criativos e campanhas publicadas com acompanhamento diário." },
-  { title: "Aquisição", text: "Primeiros leads qualificados, com CRM organizado e atendimento automatizado." },
-  { title: "Consolidação", text: "Escala dos canais mais eficientes, redução do custo por lead e planejamento do próximo ciclo." },
+  { title: "Tráfego pago & Social Media", text: "Campanhas no Google Ads e Meta Ads e conteúdo nas redes colocam a sua empresa na frente das pessoas certas." },
+  { title: "CRM com inteligência artificial", text: "Cada contato entra no Pipeflow com origem registrada, é qualificado com apoio da IA e acompanhado pelo time." },
+  { title: "Gravon IA conecta a operação", text: "A Gravon IA atende, analisa conversas e liga marketing, vendas e atendimento em um só fluxo." },
+  { title: "Visibilidade no Portal Gravon", text: "Indicadores, entregas e próximos passos ficam visíveis no Portal para decidir com base em dados." },
 ];
 
 export function Process() {
@@ -62,7 +56,7 @@ export function Process() {
       </div>
 
       <Container className="relative">
-        <SectionHeading tone="dark" id="processo-title" eyebrow="Nosso processo" title={<>Do diagnóstico à <span className="text-gradient">consolidação</span></>} description="Cada projeto segue uma sequência clara, acompanhada no Portal Gravon do primeiro dia ao próximo ciclo." />
+        <SectionHeading tone="dark" id="processo-title" eyebrow="Nosso processo" title={<>Do primeiro clique à <span className="text-gradient">visibilidade total</span></>} description="Quatro frentes conectadas: atrair, organizar, atender com inteligência e acompanhar cada resultado." />
 
         <ol ref={listRef} className="relative mx-auto mt-16 max-w-4xl" aria-label="Etapas do processo">
           {/* Trilho e traço dourado */}
